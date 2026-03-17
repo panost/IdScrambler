@@ -1,0 +1,12 @@
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.GeneratedMSBuildEditorConfig.editorconfig
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.AssemblyInfoInputs.cache
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.AssemblyInfo.cs
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.csproj.CoreCompileInputs.cache
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.sourcelink.json
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\bin\Debug\net10.0\IdScrambler.deps.json
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\bin\Debug\net10.0\IdScrambler.dll
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\bin\Debug\net10.0\IdScrambler.pdb
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.dll
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\refint\IdScrambler.dll
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\IdScrambler.pdb
+F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\Debug\net10.0\ref\IdScrambler.dll

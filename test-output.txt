@@ -1,0 +1,131 @@
+Build started 2026-03-17 8:58:05 PM.
+     1>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" on node 1 (Restore target(s)).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Debug|Any CPU".
+       _GetAllRestoreProjectPathItems:
+         Determining projects to restore...
+     1>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (1) is building "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (2:6) on node 1 (_GenerateProjectRestoreGraph target(s)).
+     2>AddPrunePackageReferences:
+         Loading prune package data from PrunePackageData folder
+         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
+     1>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (1) is building "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:5) on node 2 (_GenerateProjectRestoreGraph target(s)).
+     3>AddPrunePackageReferences:
+         Loading prune package data from PrunePackageData folder
+         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
+     2>AddPrunePackageReferences:
+         Looking for targeting packs in C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref
+     3>AddPrunePackageReferences:
+         Looking for targeting packs in C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref
+         Pack directories found: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4
+         Found package overrides file C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4\data\PackageOverrides.txt
+     2>AddPrunePackageReferences:
+         Pack directories found: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4
+     3>Done Building Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (_GenerateProjectRestoreGraph target(s)).
+     2>AddPrunePackageReferences:
+         Found package overrides file C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4\data\PackageOverrides.txt
+         Loading prune package data from PrunePackageData folder
+         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
+         Looking for targeting packs in C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref
+         Pack directories found: C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\10.0.4
+         Found package overrides file C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\10.0.4\data\PackageOverrides.txt
+     2>Done Building Project "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (_GenerateProjectRestoreGraph target(s)).
+     1>Restore:
+         X.509 certificate chain validation will use the default trust store selected by .NET for code signing.
+         X.509 certificate chain validation will use the default trust store selected by .NET for timestamping.
+         Assets file has not changed. Skipping assets file writing. Path: F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\obj\project.assets.json
+         Assets file has not changed. Skipping assets file writing. Path: F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\project.assets.json
+         Restored F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj (in 38 ms).
+         Restored F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj (in 38 ms).
+         
+         NuGet Config files used:
+             C:\Users\pthe\AppData\Roaming\NuGet\NuGet.Config
+             C:\Program Files (x86)\NuGet\Config\Microsoft.VisualStudio.FallbackLocation.config
+             C:\Program Files (x86)\NuGet\Config\Microsoft.VisualStudio.Offline.config
+         
+         Feeds used:
+             https://api.nuget.org/v3/index.json
+             file:///g:/_/PSPackages
+             C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+             C:\Program Files\dotnet\library-packs
+         All projects are up-to-date for restore.
+     1>Done Building Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (Restore target(s)).
+   1:2>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" on node 1 (VSTest target(s)).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Debug|Any CPU".
+   1:2>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (1:2) is building "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:6) on node 2 (VSTest target(s)).
+     3>BuildProject:
+         Build started, please wait...
+   3:6>Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:6) is building "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:7) on node 2 (default targets).
+   3:7>Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:7) is building "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (2:9) on node 1 (default targets).
+     2>GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       CoreGenerateAssemblyInfo:
+       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
+       _GenerateSourceLinkFile:
+         Source Link file 'obj\Debug\net10.0\IdScrambler.sourcelink.json' is up-to-date.
+       CoreCompile:
+       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+       GenerateBuildDependencyFile:
+       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
+       CopyFilesToOutputDirectory:
+         IdScrambler -> F:\Dev\GitHub\IdScrambler\src\IdScrambler\bin\Debug\net10.0\IdScrambler.dll
+     2>Done Building Project "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (default targets).
+     3>GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       CoreGenerateAssemblyInfo:
+       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
+       _GenerateSourceLinkFile:
+         Source Link file 'obj\Debug\net10.0\IdScrambler.Tests.sourcelink.json' is up-to-date.
+       CoreCompile:
+       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+       _CopyOutOfDateSourceItemsToOutputDirectory:
+       Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+       GenerateBuildDependencyFile:
+       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
+       GenerateBuildRuntimeConfigurationFiles:
+       Skipping target "GenerateBuildRuntimeConfigurationFiles" because all output files are up-to-date with respect to the input files.
+       CopyFilesToOutputDirectory:
+         IdScrambler.Tests -> F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\bin\Debug\net10.0\IdScrambler.Tests.dll
+     3>Done Building Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (default targets).
+     3>BuildProject:
+         Build completed.
+         
+Test run for F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\bin\Debug\net10.0\IdScrambler.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.4)
+[xUnit.net 00:00:00.05]   Discovering: IdScrambler.Tests
+[xUnit.net 00:00:00.09]   Discovered:  IdScrambler.Tests
+[xUnit.net 00:00:00.11]   Starting:    IdScrambler.Tests
+[xUnit.net 00:00:00.14]     IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip [FAIL]
+[xUnit.net 00:00:00.14]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.14]       Expected: 42
+[xUnit.net 00:00:00.14]       Actual:   2683606454
+[xUnit.net 00:00:00.14]       Stack Trace:
+[xUnit.net 00:00:00.14]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(22,0): at IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip()
+[xUnit.net 00:00:00.14]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.14]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.15]   Finished:    IdScrambler.Tests
+  Failed IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip [6 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 42
+Actual:   2683606454
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 22
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+Test Run Failed.
+Total tests: 1
+     Failed: 1
+ Total time: 0.5339 Seconds
+       _VSTestConsole:
+         MSB4181: The "VSTestTask" task returned false but did not log an error.
+     3>Done Building Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (VSTest target(s)) -- FAILED.
+     1>Done Building Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (VSTest target(s)) -- FAILED.
+
+Build FAILED.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.01

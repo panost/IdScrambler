@@ -1,0 +1,749 @@
+Build started 2026-03-17 8:59:08 PM.
+     1>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" on node 1 (Restore target(s)).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Debug|Any CPU".
+       _GetAllRestoreProjectPathItems:
+         Determining projects to restore...
+     1>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (1) is building "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (2:6) on node 1 (_GenerateProjectRestoreGraph target(s)).
+     2>AddPrunePackageReferences:
+         Loading prune package data from PrunePackageData folder
+         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
+     1>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (1) is building "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:5) on node 2 (_GenerateProjectRestoreGraph target(s)).
+     3>AddPrunePackageReferences:
+         Loading prune package data from PrunePackageData folder
+         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
+     2>AddPrunePackageReferences:
+         Looking for targeting packs in C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref
+     3>AddPrunePackageReferences:
+         Looking for targeting packs in C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref
+     2>AddPrunePackageReferences:
+         Pack directories found: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4
+     3>AddPrunePackageReferences:
+         Pack directories found: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4
+     2>AddPrunePackageReferences:
+         Found package overrides file C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4\data\PackageOverrides.txt
+     3>AddPrunePackageReferences:
+         Found package overrides file C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\10.0.4\data\PackageOverrides.txt
+     2>AddPrunePackageReferences:
+         Loading prune package data from PrunePackageData folder
+         Failed to load prune package data from PrunePackageData folder, loading from targeting packs instead
+         Looking for targeting packs in C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref
+         Pack directories found: C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\10.0.4
+         Found package overrides file C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\10.0.4\data\PackageOverrides.txt
+     3>Done Building Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (_GenerateProjectRestoreGraph target(s)).
+     2>Done Building Project "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (_GenerateProjectRestoreGraph target(s)).
+     1>Restore:
+         X.509 certificate chain validation will use the default trust store selected by .NET for code signing.
+         X.509 certificate chain validation will use the default trust store selected by .NET for timestamping.
+         Assets file has not changed. Skipping assets file writing. Path: F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\obj\project.assets.json
+         Assets file has not changed. Skipping assets file writing. Path: F:\Dev\GitHub\IdScrambler\src\IdScrambler\obj\project.assets.json
+         Restored F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj (in 38 ms).
+         Restored F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj (in 38 ms).
+         
+         NuGet Config files used:
+             C:\Users\pthe\AppData\Roaming\NuGet\NuGet.Config
+             C:\Program Files (x86)\NuGet\Config\Microsoft.VisualStudio.FallbackLocation.config
+             C:\Program Files (x86)\NuGet\Config\Microsoft.VisualStudio.Offline.config
+         
+         Feeds used:
+             https://api.nuget.org/v3/index.json
+             file:///g:/_/PSPackages
+             C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\
+             C:\Program Files\dotnet\library-packs
+         All projects are up-to-date for restore.
+     1>Done Building Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (Restore target(s)).
+   1:2>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" on node 1 (VSTest target(s)).
+     1>ValidateSolutionConfiguration:
+         Building solution configuration "Debug|Any CPU".
+   1:2>Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (1:2) is building "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:6) on node 2 (VSTest target(s)).
+     3>BuildProject:
+         Build started, please wait...
+   3:6>Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:6) is building "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:7) on node 2 (default targets).
+   3:7>Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (3:7) is building "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (2:9) on node 1 (default targets).
+     2>GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       CoreGenerateAssemblyInfo:
+       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
+       _GenerateSourceLinkFile:
+         Source Link file 'obj\Debug\net10.0\IdScrambler.sourcelink.json' is up-to-date.
+       CoreCompile:
+       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+       GenerateBuildDependencyFile:
+       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
+       CopyFilesToOutputDirectory:
+         IdScrambler -> F:\Dev\GitHub\IdScrambler\src\IdScrambler\bin\Debug\net10.0\IdScrambler.dll
+     2>Done Building Project "F:\Dev\GitHub\IdScrambler\src\IdScrambler\IdScrambler.csproj" (default targets).
+     3>GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       CoreGenerateAssemblyInfo:
+       Skipping target "CoreGenerateAssemblyInfo" because all output files are up-to-date with respect to the input files.
+       _GenerateSourceLinkFile:
+         Source Link file 'obj\Debug\net10.0\IdScrambler.Tests.sourcelink.json' is up-to-date.
+       CoreCompile:
+       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+       _CopyOutOfDateSourceItemsToOutputDirectory:
+       Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+       GenerateBuildDependencyFile:
+       Skipping target "GenerateBuildDependencyFile" because all output files are up-to-date with respect to the input files.
+       GenerateBuildRuntimeConfigurationFiles:
+       Skipping target "GenerateBuildRuntimeConfigurationFiles" because all output files are up-to-date with respect to the input files.
+       CopyFilesToOutputDirectory:
+         IdScrambler.Tests -> F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\bin\Debug\net10.0\IdScrambler.Tests.dll
+     3>Done Building Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (default targets).
+     3>BuildProject:
+         Build completed.
+         
+Test run for F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\bin\Debug\net10.0\IdScrambler.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\bin\Debug\net10.0\IdScrambler.Tests.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.4)
+[xUnit.net 00:00:00.05]   Discovering: IdScrambler.Tests
+[xUnit.net 00:00:00.09]   Discovered:  IdScrambler.Tests
+[xUnit.net 00:00:00.11]   Starting:    IdScrambler.Tests
+  Passed IdScrambler.Tests.KnownAnswerTests.BitReversal32_Palindrome [4 ms]
+  Passed IdScrambler.Tests.ChainTests.Base64Url_RoundTrip32 [4 ms]
+  Passed IdScrambler.Tests.ValidationTests.NibbleSubstitution_Null_Throws [3 ms]
+  Passed IdScrambler.Tests.ValidationTests.Multiply64_EvenFactor_Throws [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.BytePermutation32_Reverse_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.RotateBits64_N_Throws [< 1 ms]
+[xUnit.net 00:00:00.25]     IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip64 [FAIL]
+[xUnit.net 00:00:00.25]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.25]       Expected: 8782370706099806698
+[xUnit.net 00:00:00.25]       Actual:   8633208298425366871
+[xUnit.net 00:00:00.25]       Stack Trace:
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(93,0): at IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip64()
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.25]     IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 16) [FAIL]
+[xUnit.net 00:00:00.25]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.25]       Expected: 1
+[xUnit.net 00:00:00.25]       Actual:   65537
+[xUnit.net 00:00:00.25]       Stack Trace:
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(113,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.25]     IdScrambler.Tests.KnownAnswerTests.XorShiftRight32_KnownAnswer [FAIL]
+[xUnit.net 00:00:00.25]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.25]       Expected: 2863267840
+[xUnit.net 00:00:00.25]       Actual:   2863311530
+[xUnit.net 00:00:00.25]       Stack Trace:
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\KnownAnswerTests.cs(86,0): at IdScrambler.Tests.KnownAnswerTests.XorShiftRight32_KnownAnswer()
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.25]     IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 1) [FAIL]
+[xUnit.net 00:00:00.25]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.25]       Expected: 1
+[xUnit.net 00:00:00.25]       Actual:   3
+[xUnit.net 00:00:00.25]       Stack Trace:
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(113,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.25]            at InvokeStub_RoundTripTests.XorShiftLeft64_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.25]     IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 32) [FAIL]
+[xUnit.net 00:00:00.25]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.25]       Expected: 1
+[xUnit.net 00:00:00.25]       Actual:   4294967297
+[xUnit.net 00:00:00.25]       Stack Trace:
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.25]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(113,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.25]            at InvokeStub_RoundTripTests.XorShiftLeft64_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.25]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.ValidationTests.DefaultSBox_IsValidPermutation [3 ms]
+  Failed IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip64 [3 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 8782370706099806698
+Actual:   8633208298425366871
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip64() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 93
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 16) [6 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   65537
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 113
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.KnownAnswerTests.XorShiftRight32_KnownAnswer [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 2863267840
+Actual:   2863311530
+  Stack Trace:
+     at IdScrambler.Tests.KnownAnswerTests.XorShiftRight32_KnownAnswer() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\KnownAnswerTests.cs:line 86
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 1) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   3
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 113
+   at InvokeStub_RoundTripTests.XorShiftLeft64_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 32) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   4294967297
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 113
+   at InvokeStub_RoundTripTests.XorShiftLeft64_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 63) [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 1
+[xUnit.net 00:00:00.26]       Actual:   9223372036854775809
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(113,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.26]            at InvokeStub_RoundTripTests.XorShiftLeft64_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(shift: 63) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   9223372036854775809
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 113
+   at InvokeStub_RoundTripTests.XorShiftLeft64_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.KnownAnswerTests.NibbleSubstitution32_IdentitySBox [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.PermuteBytes32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.RotateBits64_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.Multiply32_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.XorHighLow32_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.RotateBits32_KnownAnswer [4 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.Multiply32_MultiplyByOne_IsIdentity [< 1 ms]
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip32 [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 2114319875
+[xUnit.net 00:00:00.26]       Actual:   1380862864
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(74,0): at IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip32()
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.RoundTripTests.Presets_StrongMix64_RoundTrip [5 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.Add32_Overflow_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits64_RoundTrip(amount: 63) [< 1 ms]
+  Failed IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip32 [7 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 2114319875
+Actual:   1380862864
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.CompiledDelegate_RoundTrip32() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 74
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits64_RoundTrip(amount: 32) [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits64_RoundTrip(amount: 17) [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits64_RoundTrip(amount: 1) [< 1 ms]
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.RoundTripTests.Presets_LightScramble32_RoundTrip [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 0
+[xUnit.net 00:00:00.26]       Actual:   57005
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(29,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(176,0): at IdScrambler.Tests.RoundTripTests.Presets_LightScramble32_RoundTrip()
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.KnownAnswerTests.XorShiftLeft32_KnownAnswer [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 43690
+[xUnit.net 00:00:00.26]       Actual:   2863311530
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\KnownAnswerTests.cs(97,0): at IdScrambler.Tests.KnownAnswerTests.XorShiftLeft32_KnownAnswer()
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.RoundTripTests.Presets_LightScramble64_RoundTrip [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 0
+[xUnit.net 00:00:00.26]       Actual:   3735928559
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(38,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(179,0): at IdScrambler.Tests.RoundTripTests.Presets_LightScramble64_RoundTrip()
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.KnownAnswerTests.Affine32_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.BitReversal32_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.GrayCode32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.Xor64_KnownAnswer [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.Presets_LightScramble32_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 0
+Actual:   57005
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 29
+   at IdScrambler.Tests.RoundTripTests.Presets_LightScramble32_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 176
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.KnownAnswerTests.XorShiftLeft32_KnownAnswer [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 43690
+Actual:   2863311530
+  Stack Trace:
+     at IdScrambler.Tests.KnownAnswerTests.XorShiftLeft32_KnownAnswer() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\KnownAnswerTests.cs:line 97
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.KnownAnswerTests.GrayCode32_KnownAnswers [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.Presets_LightScramble64_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 0
+Actual:   3735928559
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 38
+   at IdScrambler.Tests.RoundTripTests.Presets_LightScramble64_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 179
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 16) [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 1
+[xUnit.net 00:00:00.26]       Actual:   65537
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(97,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.26]            at InvokeStub_RoundTripTests.XorShiftLeft32_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 31) [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 1
+[xUnit.net 00:00:00.26]       Actual:   2147483649
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(97,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.26]            at InvokeStub_RoundTripTests.XorShiftLeft32_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.26]     IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 1) [FAIL]
+[xUnit.net 00:00:00.26]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.26]       Expected: 1
+[xUnit.net 00:00:00.26]       Actual:   3
+[xUnit.net 00:00:00.26]       Stack Trace:
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.26]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(97,0): at IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.26]            at InvokeStub_RoundTripTests.XorShiftLeft32_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.26]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.KnownAnswerTests.Add32_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.KnownAnswerTests.Xor32_KnownAnswer [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 5) [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 16) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   65537
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 97
+   at InvokeStub_RoundTripTests.XorShiftLeft32_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 31) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   2147483649
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 97
+   at InvokeStub_RoundTripTests.XorShiftLeft32_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(shift: 1) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   3
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.XorShiftLeft32_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 97
+   at InvokeStub_RoundTripTests.XorShiftLeft32_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.ValidationTests.JsonDeserialization_EvenFactor_Throws [10 ms]
+  Passed IdScrambler.Tests.ValidationTests.Multiply32_ByOne_IsIdentity [< 1 ms]
+  Passed IdScrambler.Tests.ChainTests.Base62_RoundTrip32 [2 ms]
+  Passed IdScrambler.Tests.ValidationTests.NibbleSubstitution_OutOfRange_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.FullChainOfIdentities_IsIdentity [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.Xor32_Zero_IsIdentity [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.XmlDeserialization_EvenFactor_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.BytePermutation32_OutOfRange_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.Add32_Zero_IsIdentity [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.BytePermutation32_WrongLength_Throws [< 1 ms]
+[xUnit.net 00:00:00.27]     IdScrambler.Tests.RoundTripTests.SignedExtensions_Int64_RoundTrip [FAIL]
+[xUnit.net 00:00:00.27]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.27]       Expected: 0
+[xUnit.net 00:00:00.27]       Actual:   3735928559
+[xUnit.net 00:00:00.27]       Stack Trace:
+[xUnit.net 00:00:00.27]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(202,0): at IdScrambler.Tests.RoundTripTests.SignedExtensions_Int64_RoundTrip()
+[xUnit.net 00:00:00.27]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.27]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.RoundTripTests.SignedExtensions_Int64_RoundTrip [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 0
+Actual:   3735928559
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.SignedExtensions_Int64_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 202
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ValidationTests.RotateBits32_N_Throws [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.XorHighLow32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.RotateBits64_Zero_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.BytePermutation32_DuplicateIndex_Throws [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Add64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Multiply32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.JsonDeserialization_UnknownType_Throws [< 1 ms]
+[xUnit.net 00:00:00.27]     IdScrambler.Tests.ChainTests.XmlDeserialization_FromSpecExample [FAIL]
+[xUnit.net 00:00:00.27]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.27]       Expected: 42
+[xUnit.net 00:00:00.27]       Actual:   2683606454
+[xUnit.net 00:00:00.27]       Stack Trace:
+[xUnit.net 00:00:00.27]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(233,0): at IdScrambler.Tests.ChainTests.XmlDeserialization_FromSpecExample()
+[xUnit.net 00:00:00.27]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.27]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.ChainTests.XmlDeserialization_FromSpecExample [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 42
+Actual:   2683606454
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.XmlDeserialization_FromSpecExample() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 233
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ValidationTests.BytePermutation64_WrongLength_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.XorShift64_N_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.XorShift64_Zero_Throws [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.SubstituteNibbles64_RoundTrip [1 ms]
+  Passed IdScrambler.Tests.ValidationTests.XorShift32_N_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.Multiply32_Zero_Throws [< 1 ms]
+[xUnit.net 00:00:00.27]     IdScrambler.Tests.RoundTripTests.Presets_StrongMix32_RoundTrip [FAIL]
+[xUnit.net 00:00:00.27]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.27]       Expected: 1
+[xUnit.net 00:00:00.27]       Actual:   454820379
+[xUnit.net 00:00:00.27]       Stack Trace:
+[xUnit.net 00:00:00.27]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.27]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(170,0): at IdScrambler.Tests.RoundTripTests.Presets_StrongMix32_RoundTrip()
+[xUnit.net 00:00:00.27]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.27]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.RoundTripTests.Presets_StrongMix32_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1
+Actual:   454820379
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.Presets_StrongMix32_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 170
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ValidationTests.XorShift32_Negative_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.NibbleSubstitution_DuplicateValue_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.XorShift32_Zero_Throws [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Affine64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.Multiply32_EvenFactor_Throws [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits32_RoundTrip(amount: 1) [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits32_RoundTrip(amount: 31) [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.NibbleSubstitution_WrongLength_Throws [< 1 ms]
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.RandomSamples64_AllTransforms_RoundTrip [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 6162194492763488279
+[xUnit.net 00:00:00.28]       Actual:   12123668439840946177
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(253,0): at IdScrambler.Tests.RoundTripTests.RandomSamples64_AllTransforms_RoundTrip()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits32_RoundTrip(amount: 16) [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits32_RoundTrip(amount: 7) [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RotateBits32_RoundTrip(amount: 15) [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.RotateBits32_Negative_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.RotateBits32_Zero_Throws [< 1 ms]
+  Passed IdScrambler.Tests.ValidationTests.Affine32_EvenFactor_Throws [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.RandomSamples64_AllTransforms_RoundTrip [25 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 6162194492763488279
+Actual:   12123668439840946177
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.RandomSamples64_AllTransforms_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 253
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.RoundTripTests.ReverseBits32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Xor32_RoundTrip [< 1 ms]
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 32) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 9223372036854775807
+[xUnit.net 00:00:00.28]       Actual:   9223372034707292160
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(105,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 1) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 2
+[xUnit.net 00:00:00.28]       Actual:   3
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(105,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at InvokeStub_RoundTripTests.XorShiftRight64_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 16) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 9223372036854775807
+[xUnit.net 00:00:00.28]       Actual:   9223231299366420480
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(105,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at InvokeStub_RoundTripTests.XorShiftRight64_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 63) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 9223372036854775808
+[xUnit.net 00:00:00.28]       Actual:   9223372036854775809
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(37,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(105,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at InvokeStub_RoundTripTests.XorShiftRight64_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 16) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 2147483647
+[xUnit.net 00:00:00.28]       Actual:   2147450880
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(89,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 32) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 9223372036854775807
+Actual:   9223372034707292160
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 105
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 1) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 2
+Actual:   3
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 105
+   at InvokeStub_RoundTripTests.XorShiftRight64_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 16) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 9223372036854775807
+Actual:   9223231299366420480
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 105
+   at InvokeStub_RoundTripTests.XorShiftRight64_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(shift: 63) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 9223372036854775808
+Actual:   9223372036854775809
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip64(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 37
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight64_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 105
+   at InvokeStub_RoundTripTests.XorShiftRight64_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.RoundTripTests.GrayCode64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Xor64_RoundTrip [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 16) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 2147483647
+Actual:   2147450880
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 89
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ChainTests.JsonSerialization_RoundTrip32 [28 ms]
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 1) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 2
+[xUnit.net 00:00:00.28]       Actual:   3
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(89,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at InvokeStub_RoundTripTests.XorShiftRight32_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 31) [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 2147483648
+[xUnit.net 00:00:00.28]       Actual:   2147483649
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(28,0): at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b)
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(89,0): at IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(Int32 shift)
+[xUnit.net 00:00:00.28]            at InvokeStub_RoundTripTests.XorShiftRight32_RoundTrip(Object, Span`1)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 5) [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 1) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 2
+Actual:   3
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 89
+   at InvokeStub_RoundTripTests.XorShiftRight32_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Failed IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(shift: 31) [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 2147483648
+Actual:   2147483649
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.AssertRoundTrip32(IBijection`1 b) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 28
+   at IdScrambler.Tests.RoundTripTests.XorShiftRight32_RoundTrip(Int32 shift) in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 89
+   at InvokeStub_RoundTripTests.XorShiftRight32_RoundTrip(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+  Passed IdScrambler.Tests.RoundTripTests.XorHighLow64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Affine32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.PermuteBytes64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.ChainTests.Registry_CaseInsensitive [1 ms]
+  Passed IdScrambler.Tests.ChainTests.EmptyChain_IsIdentity [< 1 ms]
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.ChainTests.RandomizedChain32_RoundTrip [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 1399649452
+[xUnit.net 00:00:00.28]       Actual:   1307643294
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(123,0): at IdScrambler.Tests.ChainTests.RandomizedChain32_RoundTrip()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.ChainTests.Chain64_MultiStep_RoundTrip [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 42
+[xUnit.net 00:00:00.28]       Actual:   13464943245672977854
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(35,0): at IdScrambler.Tests.ChainTests.Chain64_MultiStep_RoundTrip()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.ChainTests.JsonDeserialization_FromSpecExample [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 42
+[xUnit.net 00:00:00.28]       Actual:   2683606454
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(207,0): at IdScrambler.Tests.ChainTests.JsonDeserialization_FromSpecExample()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.ChainTests.Registry_Encode_Decode_RoundTrip [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 42
+[xUnit.net 00:00:00.28]       Actual:   -1140241189
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(295,0): at IdScrambler.Tests.ChainTests.Registry_Encode_Decode_RoundTrip()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 42
+[xUnit.net 00:00:00.28]       Actual:   2683606454
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs(22,0): at IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ChainTests.Base64Url_RoundTrip64 [< 1 ms]
+  Failed IdScrambler.Tests.ChainTests.RandomizedChain32_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 1399649452
+Actual:   1307643294
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.RandomizedChain32_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 123
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.ChainTests.Chain64_MultiStep_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 42
+Actual:   13464943245672977854
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.Chain64_MultiStep_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 35
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ChainTests.CompiledForward32_MatchesInterpreted [< 1 ms]
+  Failed IdScrambler.Tests.ChainTests.JsonDeserialization_FromSpecExample [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 42
+Actual:   2683606454
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.JsonDeserialization_FromSpecExample() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 207
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.ChainTests.Registry_Encode_Decode_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 42
+Actual:   -1140241189
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.Registry_Encode_Decode_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 295
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 42
+Actual:   2683606454
+  Stack Trace:
+     at IdScrambler.Tests.ChainTests.Chain32_MultiStep_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\ChainTests.cs:line 22
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.ChainTests.Base62_RoundTrip64 [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.RandomSamples32_AllTransforms_RoundTrip [5 ms]
+[xUnit.net 00:00:00.28]     IdScrambler.Tests.RoundTripTests.SignedExtensions_Int32_RoundTrip [FAIL]
+[xUnit.net 00:00:00.28]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.28]       Expected: 0
+[xUnit.net 00:00:00.28]       Actual:   57005
+[xUnit.net 00:00:00.28]       Stack Trace:
+[xUnit.net 00:00:00.28]         F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs(190,0): at IdScrambler.Tests.RoundTripTests.SignedExtensions_Int32_RoundTrip()
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.29]   Finished:    IdScrambler.Tests
+  Passed IdScrambler.Tests.RoundTripTests.Multiply64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.ReverseBits64_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.Add32_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.RoundTripTests.SubstituteNibbles32_RoundTrip [< 1 ms]
+  Failed IdScrambler.Tests.RoundTripTests.SignedExtensions_Int32_RoundTrip [< 1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: 0
+Actual:   57005
+  Stack Trace:
+     at IdScrambler.Tests.RoundTripTests.SignedExtensions_Int32_RoundTrip() in F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\RoundTripTests.cs:line 190
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed IdScrambler.Tests.RoundTripTests.PermuteBytes32_RotateLeft_RoundTrip [< 1 ms]
+  Passed IdScrambler.Tests.ChainTests.XmlSerialization_RoundTrip32 [2 ms]
+
+Test Run Failed.
+Total tests: 116
+     Passed: 86
+     Failed: 30
+ Total time: 0.7483 Seconds
+       _VSTestConsole:
+         MSB4181: The "VSTestTask" task returned false but did not log an error.
+     3>Done Building Project "F:\Dev\GitHub\IdScrambler\tests\IdScrambler.Tests\IdScrambler.Tests.csproj" (VSTest target(s)) -- FAILED.
+     1>Done Building Project "F:\Dev\GitHub\IdScrambler\IdScrambler.slnx" (VSTest target(s)) -- FAILED.
+
+Build FAILED.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.24
