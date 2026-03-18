@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using IdScrambler.Serialization;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,14 +65,9 @@ public static class BijectionServiceExtensions
     {
         services.AddSingleton(registry);
 
-        // Register the JSON type info modifier
-        services.ConfigureHttpJsonOptions(options =>
-        {
-            options.SerializerOptions.TypeInfoResolver = new DefaultJsonTypeInfoResolver
-            {
-                Modifiers = { ObfuscatedIdModifier.Apply(registry) }
-            };
-        });
+        services.ConfigureHttpJsonOptions(options => ConfigureJsonOptions(options.SerializerOptions, registry));
+        services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+            ConfigureJsonOptions(options.JsonSerializerOptions, registry));
 
         // Register the model binder provider
         services.Configure<MvcOptions>(options =>
@@ -80,6 +76,24 @@ public static class BijectionServiceExtensions
         });
 
         return services;
+    }
+
+    private static void ConfigureJsonOptions(JsonSerializerOptions options, BijectionRegistry registry)
+    {
+        var modifier = ObfuscatedIdModifier.Apply(registry);
+
+        if (options.TypeInfoResolver is DefaultJsonTypeInfoResolver defaultResolver)
+        {
+            defaultResolver.Modifiers.Add(modifier);
+            return;
+        }
+
+        var modifierResolver = new DefaultJsonTypeInfoResolver();
+        modifierResolver.Modifiers.Add(modifier);
+
+        options.TypeInfoResolver = options.TypeInfoResolver is null
+            ? modifierResolver
+            : JsonTypeInfoResolver.Combine(options.TypeInfoResolver, modifierResolver);
     }
 
     private static string BuildStepsJson(IConfigurationSection stepsSection)

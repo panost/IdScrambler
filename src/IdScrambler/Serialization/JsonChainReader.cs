@@ -26,6 +26,8 @@ internal static class JsonChainReader
     internal static BijectionChain<T> ReadFromElement<T>(JsonElement root)
         where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
     {
+        ValidateWidth<T>(root);
+
         var chain = BijectionChain<T>.Create();
 
         if (!root.TryGetProperty("steps", out var stepsElement))
@@ -45,40 +47,40 @@ internal static class JsonChainReader
                 switch (type)
                 {
                     case "Xor":
-                        chain.Xor(ParseValue<T>(step, "key"));
+                        chain = chain.Xor(ParseValue<T>(step, "key"));
                         break;
                     case "Add":
-                        chain.Add(ParseValue<T>(step, "offset"));
+                        chain = chain.Add(ParseValue<T>(step, "offset"));
                         break;
                     case "Multiply":
-                        chain.Multiply(ParseValue<T>(step, "factor"));
+                        chain = chain.Multiply(ParseValue<T>(step, "factor"));
                         break;
                     case "RotateBits":
-                        chain.RotateBits(ParseInt(step, "amount"));
+                        chain = chain.RotateBits(ParseInt(step, "amount"));
                         break;
                     case "XorShiftRight":
-                        chain.XorShiftRight(ParseInt(step, "shift"));
+                        chain = chain.XorShiftRight(ParseInt(step, "shift"));
                         break;
                     case "XorShiftLeft":
-                        chain.XorShiftLeft(ParseInt(step, "shift"));
+                        chain = chain.XorShiftLeft(ParseInt(step, "shift"));
                         break;
                     case "PermuteBytes":
-                        chain.PermuteBytes(ParseByteArray(step, "permutation"));
+                        chain = chain.PermuteBytes(ParseByteArray(step, "permutation"));
                         break;
                     case "SubstituteNibbles":
-                        chain.SubstituteNibbles(ParseByteArray(step, "sbox"));
+                        chain = chain.SubstituteNibbles(ParseByteArray(step, "sbox"));
                         break;
                     case "ReverseBits":
-                        chain.ReverseBits();
+                        chain = chain.ReverseBits();
                         break;
                     case "GrayCode":
-                        chain.GrayCode();
+                        chain = chain.GrayCode();
                         break;
                     case "Affine":
-                        chain.Affine(ParseValue<T>(step, "factor"), ParseValue<T>(step, "offset"));
+                        chain = chain.Affine(ParseValue<T>(step, "factor"), ParseValue<T>(step, "offset"));
                         break;
                     case "XorHighLow":
-                        chain.XorHighLow();
+                        chain = chain.XorHighLow();
                         break;
                     default:
                         throw new BijectionConfigException($"Unknown step type: '{type}'.", stepIndex);
@@ -97,6 +99,21 @@ internal static class JsonChainReader
         }
 
         return chain;
+    }
+
+    private static void ValidateWidth<T>(JsonElement root)
+        where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
+    {
+        if (!root.TryGetProperty("width", out var widthElement))
+            throw new BijectionConfigException("Missing 'width' property in JSON.");
+
+        int width = widthElement.GetInt32();
+        int expectedWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        if (width != expectedWidth)
+        {
+            throw new BijectionConfigException(
+                $"Width {width} does not match target type {typeof(T).Name}. Expected {expectedWidth}.");
+        }
     }
 
     private static T ParseValue<T>(JsonElement step, string propertyName)

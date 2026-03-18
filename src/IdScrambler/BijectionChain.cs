@@ -11,9 +11,17 @@ namespace IdScrambler;
 public sealed class BijectionChain<T> : IBijection<T>
     where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
 {
-    private readonly List<IBijectionStep<T>> _steps = [];
+    private readonly IReadOnlyList<IBijectionStep<T>> _steps;
 
-    private BijectionChain() { }
+    private BijectionChain()
+    {
+        _steps = Array.Empty<IBijectionStep<T>>();
+    }
+
+    private BijectionChain(IReadOnlyList<IBijectionStep<T>> steps)
+    {
+        _steps = steps;
+    }
 
     /// <summary>Create a new empty chain.</summary>
     public static BijectionChain<T> Create() => new();
@@ -26,85 +34,82 @@ public sealed class BijectionChain<T> : IBijection<T>
     /// <summary>XOR with a constant key.</summary>
     public BijectionChain<T> Xor(T key)
     {
-        _steps.Add(new XorBijection<T>(key));
-        return this;
+        return Append(new XorBijection<T>(key));
     }
 
     /// <summary>Modular addition with a constant offset.</summary>
     public BijectionChain<T> Add(T offset)
     {
-        _steps.Add(new AddBijection<T>(offset));
-        return this;
+        return Append(new AddBijection<T>(offset));
     }
 
     /// <summary>Modular multiplication by an odd factor.</summary>
     public BijectionChain<T> Multiply(T oddFactor)
     {
-        _steps.Add(new MultiplyBijection<T>(oddFactor));
-        return this;
+        return Append(new MultiplyBijection<T>(oddFactor));
     }
 
     /// <summary>Circular bit rotation left by the given amount.</summary>
     public BijectionChain<T> RotateBits(int amount)
     {
-        _steps.Add(new RotateBitsBijection<T>(amount));
-        return this;
+        return Append(new RotateBitsBijection<T>(amount));
     }
 
     /// <summary>XOR-shift right.</summary>
     public BijectionChain<T> XorShiftRight(int shift)
     {
-        _steps.Add(new XorShiftBijection<T>(shift, XorShiftDirection.Right));
-        return this;
+        return Append(new XorShiftBijection<T>(shift, XorShiftDirection.Right));
     }
 
     /// <summary>XOR-shift left.</summary>
     public BijectionChain<T> XorShiftLeft(int shift)
     {
-        _steps.Add(new XorShiftBijection<T>(shift, XorShiftDirection.Left));
-        return this;
+        return Append(new XorShiftBijection<T>(shift, XorShiftDirection.Left));
     }
 
     /// <summary>Permute the bytes of the integer.</summary>
     public BijectionChain<T> PermuteBytes(byte[] permutation)
     {
-        _steps.Add(new BytePermutationBijection<T>(permutation));
-        return this;
+        return Append(new BytePermutationBijection<T>(permutation));
     }
 
     /// <summary>Substitute each 4-bit nibble using an S-box.</summary>
     public BijectionChain<T> SubstituteNibbles(byte[] sbox)
     {
-        _steps.Add(new NibbleSubstitutionBijection<T>(sbox));
-        return this;
+        return Append(new NibbleSubstitutionBijection<T>(sbox));
     }
 
     /// <summary>Reverse all bit positions.</summary>
     public BijectionChain<T> ReverseBits()
     {
-        _steps.Add(new BitReversalBijection<T>());
-        return this;
+        return Append(new BitReversalBijection<T>());
     }
 
     /// <summary>Apply Gray code encoding.</summary>
     public BijectionChain<T> GrayCode()
     {
-        _steps.Add(new GrayCodeBijection<T>());
-        return this;
+        return Append(new GrayCodeBijection<T>());
     }
 
     /// <summary>Affine transform: y = (x * factor + offset) mod 2^N.</summary>
     public BijectionChain<T> Affine(T oddFactor, T offset)
     {
-        _steps.Add(new AffineBijection<T>(oddFactor, offset));
-        return this;
+        return Append(new AffineBijection<T>(oddFactor, offset));
     }
 
     /// <summary>XOR low half into high half.</summary>
     public BijectionChain<T> XorHighLow()
     {
-        _steps.Add(new XorHighLowBijection<T>());
-        return this;
+        return Append(new XorHighLowBijection<T>());
+    }
+
+    private BijectionChain<T> Append(IBijectionStep<T> step)
+    {
+        var steps = new IBijectionStep<T>[_steps.Count + 1];
+        for (int i = 0; i < _steps.Count; i++)
+            steps[i] = _steps[i];
+        steps[^1] = step;
+        return new BijectionChain<T>(steps);
     }
 
     /// <summary>Apply all forward steps 0 → N.</summary>

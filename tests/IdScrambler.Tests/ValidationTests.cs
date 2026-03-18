@@ -1,4 +1,5 @@
 using IdScrambler;
+using IdScrambler.Integration;
 using IdScrambler.Serialization;
 
 namespace IdScrambler.Tests;
@@ -249,6 +250,59 @@ public class ValidationTests
 
         Assert.Throws<BijectionConfigException>(() =>
             BijectionSerializer.FromXml<uint>(xml));
+    }
+
+    [Fact]
+    public void JsonDeserialization_WidthMismatch_Throws()
+    {
+        var json = """
+        {
+          "width": 64,
+          "steps": [
+            { "type": "Xor", "key": "0xDEADBEEF" }
+          ]
+        }
+        """;
+
+        Assert.Throws<BijectionConfigException>(() =>
+            BijectionSerializer.FromJson<uint>(json));
+    }
+
+    [Fact]
+    public void XmlDeserialization_WidthMismatch_Throws()
+    {
+        var xml = """
+        <BijectionChain width="64">
+          <Xor key="0xDEADBEEF" />
+        </BijectionChain>
+        """;
+
+        Assert.Throws<BijectionConfigException>(() =>
+            BijectionSerializer.FromXml<uint>(xml));
+    }
+
+    [Fact]
+    public void Base62Decode32_WrongLength_Throws()
+    {
+        Assert.Throws<FormatException>(() => Base62.DecodeUInt32("12345"));
+    }
+
+    [Fact]
+    public void Base62Decode32_Overflow_Throws()
+    {
+        Assert.Throws<OverflowException>(() => Base62.DecodeUInt32("999999"));
+    }
+
+    [Fact]
+    public void Base64UrlDecode32_WrongLength_Throws()
+    {
+        Assert.Throws<FormatException>(() => Base64Url.DecodeUInt32("AAAAA"));
+    }
+
+    [Fact]
+    public void Base64UrlDecode32_OversizedPayload_Throws()
+    {
+        Assert.Throws<FormatException>(() => Base64Url.DecodeUInt32("AAAAAAA"));
     }
 
     // Default S-box is a valid permutation

@@ -2,6 +2,11 @@ using IdScrambler;
 using IdScrambler.Integration;
 using IdScrambler.Serialization;
 using IdScrambler.Transforms;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 namespace IdScrambler.Tests;
 
@@ -132,6 +137,20 @@ public class ChainTests
         var chain = BijectionChain<uint>.Create();
         Assert.Equal(42u, chain.Forward(42));
         Assert.Equal(42u, chain.Inverse(42));
+    }
+
+    [Fact]
+    public void Chain_IsImmutable()
+    {
+        var empty = BijectionChain<uint>.Create();
+        var withXor = empty.Xor(0xDEADBEEF);
+        var withTwoSteps = withXor.Add(12345);
+
+        Assert.Equal(0, empty.Count);
+        Assert.Equal(1, withXor.Count);
+        Assert.Equal(2, withTwoSteps.Count);
+        Assert.Equal(42u, empty.Forward(42));
+        Assert.NotEqual(withXor.Forward(42), withTwoSteps.Forward(42));
     }
 
     // Serialization round-trip: JSON
@@ -312,5 +331,66 @@ public class ChainTests
 
         var chain = registry.Resolve<uint>("mychain");
         Assert.Equal(Presets.LightScramble32.Forward(42), chain.Forward(42));
+    }
+
+    [Fact]
+    public void AddBijection_ConfiguresMvcAndHttpJsonSerialization()
+    {
+        var services = new ServiceCollection();
+        services.AddOptions();
+        services.AddBijection(registry =>
+        {
+            registry.Register("Order", BijectionChain<uint>.Create()
+                .Multiply(0x9E3779B9)
+                .XorShiftRight(16)
+                .Xor(0xDEADBEEF));
+        });
+
+        using var provider = services.BuildServiceProvider();
+        var httpJson = provider.GetRequiredService<IOptions<Microsoft.AspNetCore.Http.Json.JsonOptions>>()
+            .Value.SerializerOptions;
+        var mvcJson = provider.GetRequiredService<IOptions<Microsoft.AspNetCore.Mvc.JsonOptions>>()
+            .Value.JsonSerializerOptions;
+
+        var dto = new OrderDto { Id = 42, Name = "sample" };
+        string httpJsonText = JsonSerializer.Serialize(dto, httpJson);
+        string mvcJsonText = JsonSerializer.Serialize(dto, mvcJson);
+
+        Assert.Equal(httpJsonText, mvcJsonText);
+        Assert.DoesNotContain("\"Id\":42", httpJsonText, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void ObfuscatedId_Numeric64_SupportsFullUnsignedRange()
+    {
+        var registry = new BijectionRegistry();
+        registry.Register("Value64", BijectionChain<ulong>.Create().Xor(0x8000000000000000));
+
+        var options = new JsonSerializerOptions
+        {
+            TypeInfoResolver = new DefaultJsonTypeInfoResolver
+            {
+                Modifiers = { ObfuscatedIdModifier.Apply(registry) }
+            }
+        };
+
+        var dto = JsonSerializer.Deserialize<LongDto>("{\"Id\":9223372036854775808}", options);
+
+        Assert.NotNull(dto);
+        Assert.Equal(0L, dto!.Id);
+    }
+
+    private sealed class OrderDto
+    {
+        [ObfuscatedId("Order")]
+        public int Id { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+    }
+
+    private sealed class LongDto
+    {
+        [ObfuscatedId("Value64")]
+        public long Id { get; set; }
     }
 }

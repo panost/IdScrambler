@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
@@ -51,8 +52,8 @@ public static class ObfuscatedIdModifier
             if (_format == ObfuscatedIdFormat.Numeric)
             {
                 obfuscated = reader.TokenType == JsonTokenType.Number
-                    ? (uint)reader.GetInt64()
-                    : uint.Parse(reader.GetString()!);
+                    ? reader.GetUInt32()
+                    : uint.Parse(reader.GetString()!, CultureInfo.InvariantCulture);
             }
             else
             {
@@ -99,8 +100,8 @@ public static class ObfuscatedIdModifier
             if (_format == ObfuscatedIdFormat.Numeric)
             {
                 obfuscated = reader.TokenType == JsonTokenType.Number
-                    ? (ulong)reader.GetInt64()
-                    : ulong.Parse(reader.GetString()!);
+                    ? reader.GetUInt64()
+                    : ulong.Parse(reader.GetString()!, CultureInfo.InvariantCulture);
             }
             else
             {

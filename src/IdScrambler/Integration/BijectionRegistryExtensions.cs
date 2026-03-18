@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Numerics;
 
 namespace IdScrambler.Integration;
@@ -44,7 +45,7 @@ public static class BijectionRegistryExtensions
         var chain = registry.Resolve<uint>(name);
         uint obfuscated = format switch
         {
-            ObfuscatedIdFormat.Numeric => uint.Parse(token),
+            ObfuscatedIdFormat.Numeric => uint.Parse(token, CultureInfo.InvariantCulture),
             ObfuscatedIdFormat.Base64Url => Base64Url.DecodeUInt32(token),
             ObfuscatedIdFormat.Base62 => Base62.DecodeUInt32(token),
             _ => throw new ArgumentOutOfRangeException(nameof(format))
@@ -59,7 +60,7 @@ public static class BijectionRegistryExtensions
         var chain = registry.Resolve<ulong>(name);
         ulong obfuscated = format switch
         {
-            ObfuscatedIdFormat.Numeric => ulong.Parse(token),
+            ObfuscatedIdFormat.Numeric => ulong.Parse(token, CultureInfo.InvariantCulture),
             ObfuscatedIdFormat.Base64Url => Base64Url.DecodeUInt64(token),
             ObfuscatedIdFormat.Base62 => Base62.DecodeUInt64(token),
             _ => throw new ArgumentOutOfRangeException(nameof(format))

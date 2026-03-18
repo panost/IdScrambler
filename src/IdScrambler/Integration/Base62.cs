@@ -47,13 +47,19 @@ public static class Base62
     /// <summary>Decode a Base62 string to uint.</summary>
     public static uint DecodeUInt32(ReadOnlySpan<char> chars)
     {
+        if (chars.Length != 6)
+            throw new FormatException("Base62-encoded 32-bit values must be exactly 6 characters.");
+
         uint value = 0;
         for (int i = 0; i < chars.Length; i++)
         {
             char c = chars[i];
             if (c >= 128 || DecodeMap[c] < 0)
                 throw new FormatException($"Invalid Base62 character: '{c}'.");
-            value = value * 62 + (uint)DecodeMap[c];
+            checked
+            {
+                value = value * 62 + (uint)DecodeMap[c];
+            }
         }
         return value;
     }
@@ -61,13 +67,19 @@ public static class Base62
     /// <summary>Decode a Base62 string to ulong.</summary>
     public static ulong DecodeUInt64(ReadOnlySpan<char> chars)
     {
+        if (chars.Length != 11)
+            throw new FormatException("Base62-encoded 64-bit values must be exactly 11 characters.");
+
         ulong value = 0;
         for (int i = 0; i < chars.Length; i++)
         {
             char c = chars[i];
             if (c >= 128 || DecodeMap[c] < 0)
                 throw new FormatException($"Invalid Base62 character: '{c}'.");
-            value = value * 62 + (ulong)DecodeMap[c];
+            checked
+            {
+                value = value * 62 + (ulong)DecodeMap[c];
+            }
         }
         return value;
     }
@@ -97,27 +109,38 @@ public static class Base64Url
     /// <summary>Decode a Base64Url string to uint.</summary>
     public static uint DecodeUInt32(ReadOnlySpan<char> chars)
     {
+        if (chars.Length != 6)
+            throw new FormatException("Base64Url-encoded 32-bit values must be exactly 6 characters.");
+
         var s = chars.ToString().Replace('-', '+').Replace('_', '/');
-        // Add padding
         switch (s.Length % 4)
         {
             case 2: s += "=="; break;
             case 3: s += "="; break;
+            case 1: throw new FormatException("Invalid Base64Url length.");
         }
         var bytes = Convert.FromBase64String(s);
+        if (bytes.Length != 4)
+            throw new FormatException("Base64Url-encoded 32-bit values must decode to exactly 4 bytes.");
         return System.Buffers.Binary.BinaryPrimitives.ReadUInt32BigEndian(bytes);
     }
 
     /// <summary>Decode a Base64Url string to ulong.</summary>
     public static ulong DecodeUInt64(ReadOnlySpan<char> chars)
     {
+        if (chars.Length != 11)
+            throw new FormatException("Base64Url-encoded 64-bit values must be exactly 11 characters.");
+
         var s = chars.ToString().Replace('-', '+').Replace('_', '/');
         switch (s.Length % 4)
         {
             case 2: s += "=="; break;
             case 3: s += "="; break;
+            case 1: throw new FormatException("Invalid Base64Url length.");
         }
         var bytes = Convert.FromBase64String(s);
+        if (bytes.Length != 8)
+            throw new FormatException("Base64Url-encoded 64-bit values must decode to exactly 8 bytes.");
         return System.Buffers.Binary.BinaryPrimitives.ReadUInt64BigEndian(bytes);
     }
 }

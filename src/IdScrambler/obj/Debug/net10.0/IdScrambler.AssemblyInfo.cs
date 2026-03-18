@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IdScrambler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3064c08599f7c6b73a6033f3ebd2e1ec850b2636")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eaeb3140cfb15f43e5a250cc4fc4f1d675cd00b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("IdScrambler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IdScrambler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

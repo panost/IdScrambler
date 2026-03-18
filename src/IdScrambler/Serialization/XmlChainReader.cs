@@ -27,6 +27,8 @@ internal static class XmlChainReader
     private static BijectionChain<T> ReadFromElement<T>(XElement root)
         where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
     {
+        ValidateWidth<T>(root);
+
         var chain = BijectionChain<T>.Create();
 
         int stepIndex = 0;
@@ -37,40 +39,40 @@ internal static class XmlChainReader
                 switch (element.Name.LocalName)
                 {
                     case "Xor":
-                        chain.Xor(ParseValue<T>(element, "key"));
+                        chain = chain.Xor(ParseValue<T>(element, "key"));
                         break;
                     case "Add":
-                        chain.Add(ParseValue<T>(element, "offset"));
+                        chain = chain.Add(ParseValue<T>(element, "offset"));
                         break;
                     case "Multiply":
-                        chain.Multiply(ParseValue<T>(element, "factor"));
+                        chain = chain.Multiply(ParseValue<T>(element, "factor"));
                         break;
                     case "RotateBits":
-                        chain.RotateBits(ParseInt(element, "amount"));
+                        chain = chain.RotateBits(ParseInt(element, "amount"));
                         break;
                     case "XorShiftRight":
-                        chain.XorShiftRight(ParseInt(element, "shift"));
+                        chain = chain.XorShiftRight(ParseInt(element, "shift"));
                         break;
                     case "XorShiftLeft":
-                        chain.XorShiftLeft(ParseInt(element, "shift"));
+                        chain = chain.XorShiftLeft(ParseInt(element, "shift"));
                         break;
                     case "PermuteBytes":
-                        chain.PermuteBytes(ParseCommaSeparatedBytes(element, "permutation"));
+                        chain = chain.PermuteBytes(ParseCommaSeparatedBytes(element, "permutation"));
                         break;
                     case "SubstituteNibbles":
-                        chain.SubstituteNibbles(ParseCommaSeparatedBytes(element, "sbox"));
+                        chain = chain.SubstituteNibbles(ParseCommaSeparatedBytes(element, "sbox"));
                         break;
                     case "ReverseBits":
-                        chain.ReverseBits();
+                        chain = chain.ReverseBits();
                         break;
                     case "GrayCode":
-                        chain.GrayCode();
+                        chain = chain.GrayCode();
                         break;
                     case "Affine":
-                        chain.Affine(ParseValue<T>(element, "factor"), ParseValue<T>(element, "offset"));
+                        chain = chain.Affine(ParseValue<T>(element, "factor"), ParseValue<T>(element, "offset"));
                         break;
                     case "XorHighLow":
-                        chain.XorHighLow();
+                        chain = chain.XorHighLow();
                         break;
                     default:
                         throw new BijectionConfigException(
@@ -92,6 +94,23 @@ internal static class XmlChainReader
         }
 
         return chain;
+    }
+
+    private static void ValidateWidth<T>(XElement root)
+        where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
+    {
+        var widthAttr = root.Attribute("width")
+            ?? throw new BijectionConfigException("Missing required attribute 'width'.");
+
+        if (!int.TryParse(widthAttr.Value, out int width))
+            throw new BijectionConfigException($"Invalid width '{widthAttr.Value}'.");
+
+        int expectedWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        if (width != expectedWidth)
+        {
+            throw new BijectionConfigException(
+                $"Width {width} does not match target type {typeof(T).Name}. Expected {expectedWidth}.");
+        }
     }
 
     private static T ParseValue<T>(XElement element, string attributeName)

@@ -112,6 +112,8 @@ var token = Presets.LightScramble64.Forward(42UL);
 
 Chains can be defined declaratively in JSON or XML and deserialized at runtime. Numeric parameters accept decimal (`12345`) or hexadecimal (`0xDEADBEEF`) notation.
 
+The declared `width` is validated during deserialization and must match the target generic type (`uint` => `32`, `ulong` => `64`). Invalid configuration throws `BijectionConfigException` before any chain is created.
+
 ### JSON
 
 ```json
@@ -169,11 +171,19 @@ string xml  = BijectionSerializer.ToXml<uint>(chain);
 
 Invalid parameters in configuration throw `BijectionConfigException` with the step index and a descriptive message.
 
+String token decoding is strict:
+
+- `Base62` tokens must be exactly 6 characters for 32-bit values and 11 for 64-bit values
+- `Base64Url` tokens must be exactly 6 characters for 32-bit values and 11 for 64-bit values
+- malformed or oversized tokens throw instead of being truncated or wrapped
+
 ---
 
 ## ASP.NET Core Integration
 
 The library provides transparent ID obfuscation at the API serialization boundary. The database stores original IDs; obfuscation happens only when writing/reading JSON or binding route parameters.
+
+`services.AddBijection(...)` configures both minimal APIs (`HttpJsonOptions`) and MVC controllers (`Microsoft.AspNetCore.Mvc.JsonOptions`), so the same `[ObfuscatedId]` attributes work in either pipeline.
 
 ### 1. Register chains via DI
 
@@ -219,6 +229,8 @@ public class OrderDto
 | `Base64Url` | `A-Z a-z 0-9 - _` | 6 chars | 11 chars |
 | `Base62` | `A-Z a-z 0-9` | 6 chars | 11 chars |
 
+`Numeric` format round-trips the full unsigned obfuscated domain for both widths, including 64-bit values above `long.MaxValue`.
+
 ### 4. Model binding (route/query parameters)
 
 ```csharp
@@ -260,7 +272,7 @@ EF query:        WHERE Id = 42
 | **Correctness invariant** | For every `IBijection<T> b` and every `T x`: `b.Inverse(b.Forward(x)) == x` and `b.Forward(b.Inverse(x)) == x`. |
 | **Deterministic** | Same input + same parameters = same output, always. No randomness. |
 | **Allocation-free** | `Forward` and `Inverse` perform zero heap allocations. |
-| **Immutable** | All `IBijection` instances are immutable and thread-safe after construction. |
+| **Immutable** | `BijectionChain<T>` and all built-in transforms are immutable and thread-safe. Each fluent call returns a new chain instance with the extra step appended. |
 | **Fail-fast** | Invalid parameters throw `ArgumentException` at construction time, never at `Forward`/`Inverse` time. |
 
 ---
