@@ -290,7 +290,7 @@ public class ValidationTests
     [Fact]
     public void Base62Decode32_Overflow_Throws()
     {
-        Assert.Throws<OverflowException>(() => Base62.DecodeUInt32("999999"));
+        Assert.Throws<FormatException>(() => Base62.DecodeUInt32("999999"));
     }
 
     [Fact]
@@ -305,7 +305,7 @@ public class ValidationTests
         Assert.Throws<FormatException>(() => Base64Url.DecodeUInt32("AAAAAAA"));
     }
 
-    // Default S-box is a valid permutation
+    // Default S-box is a valid permutation and immutable
     [Fact]
     public void DefaultSBox_IsValidPermutation()
     {
@@ -315,4 +315,69 @@ public class ValidationTests
         for (int i = 0; i < 16; i++)
             Assert.Equal(i, sorted[i]);
     }
+
+    [Fact]
+    public void DefaultSBox_ReturnsCopy()
+    {
+        var sbox1 = SBoxPresets.Default;
+        sbox1[0] = 99;
+        var sbox2 = SBoxPresets.Default;
+        Assert.NotEqual(99, sbox2[0]);
+    }
+
+    // 16-bit validation
+    [Fact]
+    public void Multiply16_EvenFactor_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().Multiply(2));
+
+    [Fact]
+    public void Affine16_EvenFactor_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().Affine(2, 100));
+
+    [Fact]
+    public void Affine64_EvenFactor_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ulong>.Create().Affine(2, 100));
+
+    [Fact]
+    public void RotateBits16_Zero_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().RotateBits(0));
+
+    [Fact]
+    public void RotateBits16_EqualWidth_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().RotateBits(16));
+
+    [Fact]
+    public void XorShiftRight16_Zero_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().XorShiftRight(0));
+
+    [Fact]
+    public void XorShiftRight16_EqualWidth_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().XorShiftRight(16));
+
+    [Fact]
+    public void PermuteBytes16_WrongLength_Throws() =>
+        Assert.Throws<ArgumentException>(() => BijectionChain<ushort>.Create().PermuteBytes([0, 1, 2]));
+
+    [Fact]
+    public void JsonDeserialize_Width16_MatchesUshort()
+    {
+        var json = """{"width":16,"steps":[{"type":"Xor","key":"0xBEEF"}]}""";
+        var chain = BijectionSerializer.FromJson<ushort>(json);
+        Assert.Equal((ushort)(42 ^ 0xBEEF), chain.Forward(42));
+    }
+
+    [Fact]
+    public void JsonDeserialize_Width16_MismatchUint_Throws()
+    {
+        var json = """{"width":16,"steps":[{"type":"Xor","key":"0xBEEF"}]}""";
+        Assert.Throws<BijectionConfigException>(() => BijectionSerializer.FromJson<uint>(json));
+    }
+
+    [Fact]
+    public void Base62Decode16_WrongLength_Throws() =>
+        Assert.Throws<FormatException>(() => Base62.DecodeUInt16("AAAA"));
+
+    [Fact]
+    public void Base64UrlDecode16_WrongLength_Throws() =>
+        Assert.Throws<FormatException>(() => Base64Url.DecodeUInt16("AAAA"));
 }

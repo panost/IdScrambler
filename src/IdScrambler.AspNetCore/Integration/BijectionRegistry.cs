@@ -1,13 +1,15 @@
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace IdScrambler.Integration;
 
 /// <summary>
-/// Registry of named bijection chains. Names are case-insensitive.
+/// Registry of named bijection chains. Names are case-insensitive. Thread-safe.
 /// </summary>
 public sealed class BijectionRegistry
 {
-    private readonly Dictionary<(string Name, Type Type), object> _chains = new(
+    private readonly ConcurrentDictionary<(string Name, Type Type), object> _chains = new(
         new NameTypeComparer());
 
     /// <summary>Register a named chain.</summary>
@@ -26,11 +28,11 @@ public sealed class BijectionRegistry
         if (!TryResolve<T>(name, out var chain))
             throw new KeyNotFoundException(
                 $"No bijection chain registered with name '{name}' for type {typeof(T).Name}.");
-        return chain!;
+        return chain;
     }
 
     /// <summary>Try to resolve a chain by name.</summary>
-    public bool TryResolve<T>(string name, out IBijection<T>? chain)
+    public bool TryResolve<T>(string name, [NotNullWhen(true)] out IBijection<T>? chain)
         where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
     {
         if (_chains.TryGetValue((name, typeof(T)), out var obj))

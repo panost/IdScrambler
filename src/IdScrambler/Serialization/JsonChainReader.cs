@@ -108,7 +108,7 @@ internal static class JsonChainReader
             throw new BijectionConfigException("Missing 'width' property in JSON.");
 
         int width = widthElement.GetInt32();
-        int expectedWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        int expectedWidth = BitWidth.Of<T>();
         if (width != expectedWidth)
         {
             throw new BijectionConfigException(
@@ -134,7 +134,14 @@ internal static class JsonChainReader
     {
         text = text.Trim();
 
-        if (typeof(T) == typeof(uint))
+        if (typeof(T) == typeof(ushort))
+        {
+            ushort value = text.StartsWith("0x", StringComparison.OrdinalIgnoreCase)
+                ? ushort.Parse(text.AsSpan(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture)
+                : ushort.Parse(text, CultureInfo.InvariantCulture);
+            return T.CreateTruncating(value);
+        }
+        else if (typeof(T) == typeof(uint))
         {
             uint value = text.StartsWith("0x", StringComparison.OrdinalIgnoreCase)
                 ? uint.Parse(text.AsSpan(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture)
@@ -165,7 +172,13 @@ internal static class JsonChainReader
 
         var list = new List<byte>();
         foreach (var item in prop.EnumerateArray())
-            list.Add((byte)item.GetInt32());
+        {
+            int val = item.GetInt32();
+            if (val is < 0 or > 255)
+                throw new BijectionConfigException(
+                    $"Value {val} in '{propertyName}' is out of range [0, 255].");
+            list.Add((byte)val);
+        }
         return list.ToArray();
     }
 }

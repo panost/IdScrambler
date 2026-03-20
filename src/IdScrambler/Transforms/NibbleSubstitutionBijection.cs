@@ -40,7 +40,7 @@ internal sealed class NibbleSubstitutionBijection<T> : IBijectionStep<T>
         for (int i = 0; i < 16; i++)
             _inverseSbox[_sbox[i]] = (byte)i;
 
-        _nibbleCount = typeof(T) == typeof(uint) ? 8 : 16;
+        _nibbleCount = BitWidth.Of<T>() / 4;
     }
 
     public byte[] SBox => (byte[])_sbox.Clone();

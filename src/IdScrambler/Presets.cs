@@ -8,8 +8,8 @@ namespace IdScrambler;
 public static class Presets
 {
     /// <summary>
-    /// Strong avalanche mixing similar to splitmix32.
-    /// Multiply → XorShiftRight → Multiply → XorShiftRight → Multiply → XorShiftRight
+    /// Strong avalanche mixing for 32-bit values.
+    /// XorShiftRight → Multiply → XorShiftRight → Multiply → XorShiftRight
     /// </summary>
     public static IBijection<uint> StrongMix32 { get; } = BijectionChain<uint>.Create()
         .XorShiftRight(16)
@@ -44,4 +44,12 @@ public static class Presets
         .Multiply(0x9E3779B97F4A7C15UL)
         .XorShiftRight(32)
         .Xor(0xDEADBEEFCAFEBABEUL);
+
+    /// <summary>
+    /// Lightweight scramble for 16-bit ID obfuscation.
+    /// </summary>
+    public static IBijection<ushort> LightScramble16 { get; } = BijectionChain<ushort>.Create()
+        .Multiply(unchecked((ushort)0x9E37))
+        .XorShiftRight(8)
+        .Xor((ushort)0xBEEF);
 }

@@ -11,7 +11,7 @@ internal sealed class GrayCodeBijection<T> : IBijectionStep<T>
 
     public GrayCodeBijection()
     {
-        _bitWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        _bitWidth = BitWidth.Of<T>();
     }
 
     /// <summary>Forward: binary to Gray code.</summary>

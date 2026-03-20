@@ -11,14 +11,14 @@ namespace IdScrambler;
 public sealed class BijectionChain<T> : IBijection<T>
     where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
 {
-    private readonly IReadOnlyList<IBijectionStep<T>> _steps;
+    private readonly IBijectionStep<T>[] _steps;
 
     private BijectionChain()
     {
-        _steps = Array.Empty<IBijectionStep<T>>();
+        _steps = [];
     }
 
-    private BijectionChain(IReadOnlyList<IBijectionStep<T>> steps)
+    private BijectionChain(IBijectionStep<T>[] steps)
     {
         _steps = steps;
     }
@@ -27,7 +27,7 @@ public sealed class BijectionChain<T> : IBijection<T>
     public static BijectionChain<T> Create() => new();
 
     /// <summary>The number of steps in the chain.</summary>
-    public int Count => _steps.Count;
+    public int Count => _steps.Length;
 
     internal IReadOnlyList<IBijectionStep<T>> Steps => _steps;
 
@@ -105,9 +105,8 @@ public sealed class BijectionChain<T> : IBijection<T>
 
     private BijectionChain<T> Append(IBijectionStep<T> step)
     {
-        var steps = new IBijectionStep<T>[_steps.Count + 1];
-        for (int i = 0; i < _steps.Count; i++)
-            steps[i] = _steps[i];
+        var steps = new IBijectionStep<T>[_steps.Length + 1];
+        _steps.CopyTo(steps, 0);
         steps[^1] = step;
         return new BijectionChain<T>(steps);
     }
@@ -116,7 +115,7 @@ public sealed class BijectionChain<T> : IBijection<T>
     public T Forward(T value)
     {
         T result = value;
-        for (int i = 0; i < _steps.Count; i++)
+        for (int i = 0; i < _steps.Length; i++)
             result = _steps[i].Forward(result);
         return result;
     }
@@ -125,7 +124,7 @@ public sealed class BijectionChain<T> : IBijection<T>
     public T Inverse(T value)
     {
         T result = value;
-        for (int i = _steps.Count - 1; i >= 0; i--)
+        for (int i = _steps.Length - 1; i >= 0; i--)
             result = _steps[i].Inverse(result);
         return result;
     }
@@ -135,7 +134,7 @@ public sealed class BijectionChain<T> : IBijection<T>
     {
         var param = Expression.Parameter(typeof(T), "value");
         Expression body = param;
-        for (int i = 0; i < _steps.Count; i++)
+        for (int i = 0; i < _steps.Length; i++)
             body = _steps[i].BuildForwardExpression(body);
         return Expression.Lambda<Func<T, T>>(body, param).Compile();
     }
@@ -145,7 +144,7 @@ public sealed class BijectionChain<T> : IBijection<T>
     {
         var param = Expression.Parameter(typeof(T), "value");
         Expression body = param;
-        for (int i = _steps.Count - 1; i >= 0; i--)
+        for (int i = _steps.Length - 1; i >= 0; i--)
             body = _steps[i].BuildInverseExpression(body);
         return Expression.Lambda<Func<T, T>>(body, param).Compile();
     }

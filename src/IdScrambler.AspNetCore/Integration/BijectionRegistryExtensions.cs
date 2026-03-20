@@ -8,6 +8,21 @@ namespace IdScrambler.Integration;
 /// </summary>
 public static class BijectionRegistryExtensions
 {
+    /// <summary>Encode a short ID using the named 16-bit chain and specified format.</summary>
+    public static string Encode(this BijectionRegistry registry, string name, short id,
+        ObfuscatedIdFormat format = ObfuscatedIdFormat.Numeric)
+    {
+        var chain = registry.Resolve<ushort>(name);
+        ushort obfuscated = chain.Forward(unchecked((ushort)id));
+        return format switch
+        {
+            ObfuscatedIdFormat.Numeric => obfuscated.ToString(),
+            ObfuscatedIdFormat.Base64Url => Base64Url.Encode(obfuscated),
+            ObfuscatedIdFormat.Base62 => Base62.Encode(obfuscated),
+            _ => throw new ArgumentOutOfRangeException(nameof(format))
+        };
+    }
+
     /// <summary>Encode an int ID using the named 32-bit chain and specified format.</summary>
     public static string Encode(this BijectionRegistry registry, string name, int id,
         ObfuscatedIdFormat format = ObfuscatedIdFormat.Numeric)
@@ -36,6 +51,21 @@ public static class BijectionRegistryExtensions
             ObfuscatedIdFormat.Base62 => Base62.Encode(obfuscated),
             _ => throw new ArgumentOutOfRangeException(nameof(format))
         };
+    }
+
+    /// <summary>Decode a string token back to short using the named 16-bit chain and format.</summary>
+    public static short DecodeInt16(this BijectionRegistry registry, string name, string token,
+        ObfuscatedIdFormat format = ObfuscatedIdFormat.Numeric)
+    {
+        var chain = registry.Resolve<ushort>(name);
+        ushort obfuscated = format switch
+        {
+            ObfuscatedIdFormat.Numeric => ushort.Parse(token, CultureInfo.InvariantCulture),
+            ObfuscatedIdFormat.Base64Url => Base64Url.DecodeUInt16(token),
+            ObfuscatedIdFormat.Base62 => Base62.DecodeUInt16(token),
+            _ => throw new ArgumentOutOfRangeException(nameof(format))
+        };
+        return unchecked((short)chain.Inverse(obfuscated));
     }
 
     /// <summary>Decode a string token back to int using the named 32-bit chain and format.</summary>

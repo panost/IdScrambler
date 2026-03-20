@@ -18,7 +18,7 @@ internal sealed class AffineBijection<T> : IBijectionStep<T>
 
         _factor = factor;
         _offset = offset;
-        _inverseFactor = ComputeModularInverse(factor);
+        _inverseFactor = ModularInverse.Compute(factor);
     }
 
     public T Factor => _factor;
@@ -50,15 +50,5 @@ internal sealed class AffineBijection<T> : IBijectionStep<T>
             Expression.Constant(_inverseFactor));
     }
 
-    private static T ComputeModularInverse(T factor)
-    {
-        int bits = typeof(T) == typeof(uint) ? 32 : 64;
-        T x = factor;
-        T two = T.One + T.One;
-        for (int i = 0; i < bits; i++)
-        {
-            unchecked { x = x * (two - factor * x); }
-        }
-        return x;
-    }
+
 }

@@ -196,6 +196,171 @@ public class ChainTests
         }
     }
 
+    // XML round-trip should verify inverse too (fixes test gap)
+    [Fact]
+    public void XmlSerialization_RoundTrip32_WithInverse()
+    {
+        var chain = BijectionChain<uint>.Create()
+            .Xor(0xDEADBEEF)
+            .Multiply(0x9E3779B9)
+            .XorShiftRight(16)
+            .Affine(0x45D9F3B1, 0x12345678);
+
+        string xml = BijectionSerializer.ToXml<uint>(chain);
+        var restored = BijectionSerializer.FromXml<uint>(xml);
+
+        for (uint x = 0; x < 500; x++)
+        {
+            Assert.Equal(chain.Forward(x), restored.Forward(x));
+            Assert.Equal(chain.Inverse(x), restored.Inverse(x));
+        }
+    }
+
+    // 16-bit serialization round-trips
+    [Fact]
+    public void JsonSerialization_RoundTrip16()
+    {
+        var chain = BijectionChain<ushort>.Create()
+            .Xor(0xBEEF)
+            .Multiply(0x9E37)
+            .XorShiftRight(8)
+            .Add(1234)
+            .RotateBits(5)
+            .ReverseBits()
+            .GrayCode()
+            .XorHighLow();
+
+        string json = BijectionSerializer.ToJson<ushort>(chain);
+        var restored = BijectionSerializer.FromJson<ushort>(json);
+
+        for (ushort x = 0; x < 500; x++)
+        {
+            Assert.Equal(chain.Forward(x), restored.Forward(x));
+            Assert.Equal(chain.Inverse(x), restored.Inverse(x));
+        }
+    }
+
+    [Fact]
+    public void XmlSerialization_RoundTrip16()
+    {
+        var chain = BijectionChain<ushort>.Create()
+            .Xor(0xBEEF)
+            .Multiply(0x9E37)
+            .XorShiftRight(8);
+
+        string xml = BijectionSerializer.ToXml<ushort>(chain);
+        var restored = BijectionSerializer.FromXml<ushort>(xml);
+
+        for (ushort x = 0; x < 500; x++)
+        {
+            Assert.Equal(chain.Forward(x), restored.Forward(x));
+            Assert.Equal(chain.Inverse(x), restored.Inverse(x));
+        }
+    }
+
+    // 64-bit serialization round-trips (fixes test gap)
+    [Fact]
+    public void JsonSerialization_RoundTrip64()
+    {
+        var chain = BijectionChain<ulong>.Create()
+            .Xor(0xDEADBEEFCAFEBABE)
+            .Multiply(0x9E3779B97F4A7C15)
+            .XorShiftRight(27)
+            .Add(0x123456789ABCDEF0)
+            .RotateBits(17)
+            .ReverseBits()
+            .GrayCode()
+            .XorHighLow();
+
+        string json = BijectionSerializer.ToJson<ulong>(chain);
+        var restored = BijectionSerializer.FromJson<ulong>(json);
+
+        var rng = new Random(42);
+        for (int i = 0; i < 500; i++)
+        {
+            ulong x = ((ulong)(uint)rng.Next() << 32) | (uint)rng.Next();
+            Assert.Equal(chain.Forward(x), restored.Forward(x));
+            Assert.Equal(chain.Inverse(x), restored.Inverse(x));
+        }
+    }
+
+    // 16-bit chain
+    [Fact]
+    public void Chain16_MultiStep_RoundTrip()
+    {
+        var chain = BijectionChain<ushort>.Create()
+            .Xor(0xBEEF)
+            .Multiply(0x9E37)
+            .XorShiftRight(8);
+
+        ushort encoded = chain.Forward(42);
+        Assert.Equal((ushort)42, chain.Inverse(encoded));
+        Assert.NotEqual((ushort)42, encoded);
+    }
+
+    // 16-bit compiled delegates
+    [Fact]
+    public void CompiledDelegate_RoundTrip16()
+    {
+        var chain = BijectionChain<ushort>.Create()
+            .Multiply(0x9E37)
+            .XorShiftRight(8)
+            .Add(0x1234)
+            .GrayCode()
+            .XorHighLow();
+
+        var forward = chain.CompileForward();
+        var inverse = chain.CompileInverse();
+
+        var rng = new Random(123);
+        for (int i = 0; i < 10000; i++)
+        {
+            ushort x = (ushort)rng.Next(0, 65536);
+            Assert.Equal(x, inverse(forward(x)));
+        }
+    }
+
+    // Base62 16-bit round-trip
+    [Fact]
+    public void Base62_RoundTrip16()
+    {
+        for (ushort x = 0; x < 1000; x++)
+        {
+            var encoded = Base62.Encode(x);
+            Assert.Equal(3, encoded.Length);
+            Assert.Equal(x, Base62.DecodeUInt16(encoded));
+        }
+    }
+
+    // Base64Url 16-bit round-trip
+    [Fact]
+    public void Base64Url_RoundTrip16()
+    {
+        ushort[] values = [0, 1, 42, ushort.MaxValue, 0xBEEF];
+        foreach (var x in values)
+        {
+            var encoded = Base64Url.Encode(x);
+            Assert.Equal(x, Base64Url.DecodeUInt16(encoded));
+        }
+    }
+
+    // Registry 16-bit
+    [Fact]
+    public void Registry_Encode_Decode_RoundTrip16()
+    {
+        var registry = new BijectionRegistry();
+        registry.Register("Test16", BijectionChain<ushort>.Create()
+            .Multiply(0x9E37)
+            .XorShiftRight(8)
+            .Xor(0xBEEF));
+
+        var numericToken = registry.Encode("Test16", (short)42);
+        Assert.Equal((short)42, registry.DecodeInt16("Test16", numericToken, ObfuscatedIdFormat.Numeric));
+
+        var base62Token = registry.Encode("Test16", (short)42, ObfuscatedIdFormat.Base62);
+        Assert.Equal((short)42, registry.DecodeInt16("Test16", base62Token, ObfuscatedIdFormat.Base62));
+    }
+
     // JSON deserialization from spec example
     [Fact]
     public void JsonDeserialization_FromSpecExample()

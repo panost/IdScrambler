@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Numerics;
 using System.Xml.Linq;
 
@@ -105,7 +106,7 @@ internal static class XmlChainReader
         if (!int.TryParse(widthAttr.Value, out int width))
             throw new BijectionConfigException($"Invalid width '{widthAttr.Value}'.");
 
-        int expectedWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        int expectedWidth = BitWidth.Of<T>();
         if (width != expectedWidth)
         {
             throw new BijectionConfigException(
@@ -127,7 +128,7 @@ internal static class XmlChainReader
         var attr = element.Attribute(attributeName)
             ?? throw new BijectionConfigException($"Missing required attribute '{attributeName}'.");
 
-        return int.Parse(attr.Value);
+        return int.Parse(attr.Value, CultureInfo.InvariantCulture);
     }
 
     private static byte[] ParseCommaSeparatedBytes(XElement element, string attributeName)

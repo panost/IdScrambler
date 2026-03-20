@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/IdScrambler/IdScrambler.csproj" />
+    <Project Path="src/IdScrambler.AspNetCore/IdScrambler.AspNetCore.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/IdScrambler.Tests/IdScrambler.Tests.csproj" />

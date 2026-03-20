@@ -29,8 +29,4 @@ internal interface IBijectionStep<T> : IBijection<T>
     Expression BuildInverseExpression(Expression input);
 }
 
-/// <summary>32-bit bijection.</summary>
-public interface IBijection32 : IBijection<uint> { }
 
-/// <summary>64-bit bijection.</summary>
-public interface IBijection64 : IBijection<ulong> { }

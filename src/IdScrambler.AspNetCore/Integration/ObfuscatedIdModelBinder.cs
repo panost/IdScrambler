@@ -35,7 +35,11 @@ public sealed class ObfuscatedIdModelBinder : IModelBinder
         try
         {
             object result;
-            if (_targetType == typeof(int))
+            if (_targetType == typeof(short))
+            {
+                result = _registry.DecodeInt16(_chainName, token, _format);
+            }
+            else if (_targetType == typeof(int))
             {
                 result = _registry.DecodeInt32(_chainName, token, _format);
             }
@@ -72,14 +76,18 @@ public sealed class ObfuscatedIdModelBinderProvider : IModelBinderProvider
         ArgumentNullException.ThrowIfNull(context);
 
         var attr = context.Metadata is Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DefaultModelMetadata metadata
-            ? metadata.Attributes.ParameterAttributes
+            ? (metadata.Attributes.ParameterAttributes
                 ?.OfType<ObfuscatedIdAttribute>()
-                .FirstOrDefault()
+                .FirstOrDefault())
+              ?? (metadata.Attributes.PropertyAttributes
+                ?.OfType<ObfuscatedIdAttribute>()
+                .FirstOrDefault())
             : null;
 
         if (attr == null) return null;
 
-        if (context.Metadata.ModelType != typeof(int) && context.Metadata.ModelType != typeof(long))
+        if (context.Metadata.ModelType != typeof(short) && context.Metadata.ModelType != typeof(int)
+            && context.Metadata.ModelType != typeof(long))
             return null;
 
         // Resolve the registry from DI — we need to defer this until the binder is created

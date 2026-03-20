@@ -37,7 +37,7 @@ public static class BijectionSerializer
         if (chain is not BijectionChain<T> bijectionChain)
             throw new ArgumentException("Can only serialize BijectionChain<T> instances.", nameof(chain));
 
-        int width = typeof(T) == typeof(uint) ? 32 : 64;
+        int width = BitWidth.Of<T>();
 
         using var stream = new MemoryStream();
         using var writer = new Utf8JsonWriter(stream, new JsonWriterOptions { Indented = true });
@@ -67,7 +67,7 @@ public static class BijectionSerializer
         if (chain is not BijectionChain<T> bijectionChain)
             throw new ArgumentException("Can only serialize BijectionChain<T> instances.", nameof(chain));
 
-        int width = typeof(T) == typeof(uint) ? 32 : 64;
+        int width = BitWidth.Of<T>();
 
         var root = new XElement("BijectionChain", new XAttribute("width", width));
 
@@ -90,7 +90,7 @@ public static class BijectionSerializer
                 break;
             case AddBijection<T> add:
                 writer.WriteString("type", "Add");
-                writer.WriteNumber("offset", ulong.CreateTruncating(add.Offset));
+                writer.WriteString("offset", FormatValue(add.Offset));
                 break;
             case MultiplyBijection<T> mul:
                 writer.WriteString("type", "Multiply");
@@ -125,7 +125,7 @@ public static class BijectionSerializer
             case AffineBijection<T> aff:
                 writer.WriteString("type", "Affine");
                 writer.WriteString("factor", FormatHex(aff.Factor));
-                writer.WriteNumber("offset", ulong.CreateTruncating(aff.Offset));
+                writer.WriteString("offset", FormatValue(aff.Offset));
                 break;
             case XorHighLowBijection<T>:
                 writer.WriteString("type", "XorHighLow");
@@ -141,7 +141,7 @@ public static class BijectionSerializer
         return step switch
         {
             XorBijection<T> xor => new XElement("Xor", new XAttribute("key", FormatHex(xor.Key))),
-            AddBijection<T> add => new XElement("Add", new XAttribute("offset", ulong.CreateTruncating(add.Offset))),
+            AddBijection<T> add => new XElement("Add", new XAttribute("offset", FormatValue(add.Offset))),
             MultiplyBijection<T> mul => new XElement("Multiply", new XAttribute("factor", FormatHex(mul.Factor))),
             RotateBitsBijection<T> rot => new XElement("RotateBits", new XAttribute("amount", rot.Amount)),
             XorShiftBijection<T> xs => new XElement(
@@ -155,7 +155,7 @@ public static class BijectionSerializer
             GrayCodeBijection<T> => new XElement("GrayCode"),
             AffineBijection<T> aff => new XElement("Affine",
                 new XAttribute("factor", FormatHex(aff.Factor)),
-                new XAttribute("offset", ulong.CreateTruncating(aff.Offset))),
+                new XAttribute("offset", FormatValue(aff.Offset))),
             XorHighLowBijection<T> => new XElement("XorHighLow"),
             _ => throw new InvalidOperationException($"Unknown step type: {step.GetType().Name}")
         };
@@ -163,9 +163,21 @@ public static class BijectionSerializer
 
     private static string FormatHex<T>(T value) where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
     {
-        if (typeof(T) == typeof(uint))
+        if (typeof(T) == typeof(ushort))
+            return $"0x{ushort.CreateTruncating(value):X4}";
+        else if (typeof(T) == typeof(uint))
             return $"0x{uint.CreateTruncating(value):X8}";
         else
             return $"0x{ulong.CreateTruncating(value):X16}";
+    }
+
+    private static string FormatValue<T>(T value) where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
+    {
+        if (typeof(T) == typeof(ushort))
+            return ushort.CreateTruncating(value).ToString();
+        else if (typeof(T) == typeof(uint))
+            return uint.CreateTruncating(value).ToString();
+        else
+            return ulong.CreateTruncating(value).ToString();
     }
 }

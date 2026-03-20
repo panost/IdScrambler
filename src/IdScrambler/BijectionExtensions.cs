@@ -7,6 +7,14 @@ namespace IdScrambler;
 /// </summary>
 public static class BijectionExtensions
 {
+    /// <summary>Apply the forward transformation on a signed 16-bit integer.</summary>
+    public static short Forward(this IBijection<ushort> bijection, short value)
+        => unchecked((short)bijection.Forward(unchecked((ushort)value)));
+
+    /// <summary>Apply the inverse transformation on a signed 16-bit integer.</summary>
+    public static short Inverse(this IBijection<ushort> bijection, short value)
+        => unchecked((short)bijection.Inverse(unchecked((ushort)value)));
+
     /// <summary>Apply the forward transformation on a signed 32-bit integer.</summary>
     public static int Forward(this IBijection<uint> bijection, int value)
         => unchecked((int)bijection.Forward(unchecked((uint)value)));

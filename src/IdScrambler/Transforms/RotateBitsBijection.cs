@@ -12,7 +12,7 @@ internal sealed class RotateBitsBijection<T> : IBijectionStep<T>
 
     public RotateBitsBijection(int amount)
     {
-        _bitWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        _bitWidth = BitWidth.Of<T>();
 
         if (amount < 1 || amount > _bitWidth - 1)
             throw new ArgumentException(

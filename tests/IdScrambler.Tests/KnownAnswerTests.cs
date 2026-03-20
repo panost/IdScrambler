@@ -169,4 +169,126 @@ public class KnownAnswerTests
         var b = BijectionChain<uint>.Create().SubstituteNibbles(identitySbox);
         Assert.Equal(0x12345678u, b.Forward(0x12345678u));
     }
+
+    // --- 16-bit known-answer tests ---
+
+    [Fact]
+    public void Xor16_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().Xor(0xFF00);
+        Assert.Equal((ushort)(0x1234 ^ 0xFF00), b.Forward(0x1234));
+    }
+
+    [Fact]
+    public void Add16_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().Add(10);
+        Assert.Equal((ushort)52, b.Forward(42));
+        Assert.Equal((ushort)42, b.Inverse(52));
+    }
+
+    [Fact]
+    public void Add16_Overflow_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().Add(1);
+        Assert.Equal((ushort)0, b.Forward(ushort.MaxValue));
+        Assert.Equal(ushort.MaxValue, b.Inverse(0));
+    }
+
+    [Fact]
+    public void Multiply16_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().Multiply(0x9E37);
+        ushort result = b.Forward(1);
+        Assert.Equal((ushort)0x9E37, result);
+        Assert.Equal((ushort)1, b.Inverse(result));
+    }
+
+    [Fact]
+    public void RotateBits16_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().RotateBits(8);
+        // Rotate left by 8: 0x1234 → 0x3412
+        Assert.Equal((ushort)0x3412, b.Forward(0x1234));
+        Assert.Equal((ushort)0x1234, b.Inverse(0x3412));
+    }
+
+    [Fact]
+    public void BitReversal16_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().ReverseBits();
+        // 0x0001 reversed in 16-bit = 0x8000
+        Assert.Equal((ushort)0x8000, b.Forward(1));
+        Assert.Equal((ushort)1, b.Forward(0x8000));
+    }
+
+    [Fact]
+    public void GrayCode16_KnownAnswers()
+    {
+        var b = BijectionChain<ushort>.Create().GrayCode();
+        Assert.Equal((ushort)0, b.Forward(0));
+        Assert.Equal((ushort)1, b.Forward(1));
+        Assert.Equal((ushort)3, b.Forward(2));
+        Assert.Equal((ushort)2, b.Forward(3));
+    }
+
+    [Fact]
+    public void XorHighLow16_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().XorHighLow();
+        // x = 0x00FF → x ^ (0xFF << 8) = 0x00FF ^ 0xFF00 = 0xFFFF
+        Assert.Equal((ushort)0xFFFF, b.Forward(0x00FF));
+        Assert.Equal((ushort)0x00FF, b.Forward(0xFFFF)); // self-inverse
+    }
+
+    [Fact]
+    public void BytePermutation16_Swap_KnownAnswer()
+    {
+        var b = BijectionChain<ushort>.Create().PermuteBytes([1, 0]);
+        // 0x1234 with bytes [0x34, 0x12] (little-endian), swapped: [0x12, 0x34] = 0x3412
+        Assert.Equal((ushort)0x3412, b.Forward(0x1234));
+    }
+
+    // --- 64-bit additional known-answer tests (fills gap) ---
+
+    [Fact]
+    public void Add64_KnownAnswer()
+    {
+        var b = BijectionChain<ulong>.Create().Add(10);
+        Assert.Equal(52UL, b.Forward(42));
+        Assert.Equal(42UL, b.Inverse(52));
+    }
+
+    [Fact]
+    public void Multiply64_KnownAnswer()
+    {
+        var b = BijectionChain<ulong>.Create().Multiply(0x9E3779B97F4A7C15);
+        ulong result = b.Forward(1);
+        Assert.Equal(0x9E3779B97F4A7C15UL, result);
+        Assert.Equal(1UL, b.Inverse(result));
+    }
+
+    [Fact]
+    public void BitReversal64_KnownAnswer()
+    {
+        var b = BijectionChain<ulong>.Create().ReverseBits();
+        Assert.Equal(0x8000000000000000UL, b.Forward(1));
+        Assert.Equal(1UL, b.Forward(0x8000000000000000UL));
+    }
+
+    [Fact]
+    public void XorHighLow64_KnownAnswer()
+    {
+        var b = BijectionChain<ulong>.Create().XorHighLow();
+        Assert.Equal(0xFFFFFFFFFFFFFFFFUL, b.Forward(0x00000000FFFFFFFF));
+        Assert.Equal(0x00000000FFFFFFFFUL, b.Forward(0xFFFFFFFFFFFFFFFF)); // self-inverse
+    }
+
+    [Fact]
+    public void Affine64_KnownAnswer()
+    {
+        var b = BijectionChain<ulong>.Create().Affine(1, 100);
+        Assert.Equal(142UL, b.Forward(42));
+        Assert.Equal(42UL, b.Inverse(142));
+    }
 }

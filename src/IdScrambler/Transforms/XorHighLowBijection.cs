@@ -12,16 +12,9 @@ internal sealed class XorHighLowBijection<T> : IBijectionStep<T>
 
     public XorHighLowBijection()
     {
-        if (typeof(T) == typeof(uint))
-        {
-            _halfBits = 16;
-            _lowMask = T.CreateTruncating(0xFFFF);
-        }
-        else
-        {
-            _halfBits = 32;
-            _lowMask = T.CreateTruncating(0xFFFFFFFF);
-        }
+        int bits = BitWidth.Of<T>();
+        _halfBits = bits / 2;
+        _lowMask = (T.One << _halfBits) - T.One;
     }
 
     public T Forward(T value) => value ^ ((value & _lowMask) << _halfBits);

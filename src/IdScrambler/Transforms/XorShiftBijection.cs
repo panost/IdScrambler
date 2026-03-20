@@ -15,7 +15,7 @@ internal sealed class XorShiftBijection<T> : IBijectionStep<T>
 
     public XorShiftBijection(int shift, XorShiftDirection direction)
     {
-        _bitWidth = typeof(T) == typeof(uint) ? 32 : 64;
+        _bitWidth = BitWidth.Of<T>();
 
         if (shift < 1 || shift > _bitWidth - 1)
             throw new ArgumentException(

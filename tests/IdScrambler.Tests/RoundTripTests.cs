@@ -8,6 +8,12 @@ namespace IdScrambler.Tests;
 /// </summary>
 public class RoundTripTests
 {
+    private static readonly ushort[] TestValues16 =
+    [
+        0, 1, 2, 42, 255, 256, 0x7FFF, 0x8000, 0xBEEF, ushort.MaxValue,
+        0x1234, 0x0100, 0xFF00, 0x00FF, 0xAAAA, 0x5555
+    ];
+
     private static readonly uint[] TestValues32 =
     [
         0, 1, 2, 42, 255, 256, 0x7FFFFFFF, 0x80000000, 0xDEADBEEF, uint.MaxValue,
@@ -20,6 +26,15 @@ public class RoundTripTests
         0xDEADBEEFCAFEBABE, ulong.MaxValue, 0x123456789ABCDEF0,
         0xAAAAAAAAAAAAAAAA, 0x5555555555555555, 0x00000000FFFFFFFF
     ];
+
+    private static void AssertRoundTrip16(IBijection<ushort> b)
+    {
+        foreach (var x in TestValues16)
+        {
+            Assert.Equal(x, b.Inverse(b.Forward(x)));
+            Assert.Equal(x, b.Forward(b.Inverse(x)));
+        }
+    }
 
     private static void AssertRoundTrip32(IBijection<uint> b)
     {
@@ -166,6 +181,27 @@ public class RoundTripTests
     public void XorHighLow64_RoundTrip() =>
         AssertRoundTrip64(BijectionChain<ulong>.Create().XorHighLow());
 
+    // --- 16-bit round-trip tests ---
+
+    [Fact] public void Xor16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().Xor(0xBEEF));
+    [Fact] public void Add16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().Add(1234));
+    [Fact] public void Multiply16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().Multiply(0x9E37));
+    [Theory] [InlineData(1)] [InlineData(7)] [InlineData(15)]
+    public void RotateBits16_RoundTrip(int amount) => AssertRoundTrip16(BijectionChain<ushort>.Create().RotateBits(amount));
+    [Theory] [InlineData(1)] [InlineData(5)] [InlineData(15)]
+    public void XorShiftRight16_RoundTrip(int shift) => AssertRoundTrip16(BijectionChain<ushort>.Create().XorShiftRight(shift));
+    [Theory] [InlineData(1)] [InlineData(5)] [InlineData(15)]
+    public void XorShiftLeft16_RoundTrip(int shift) => AssertRoundTrip16(BijectionChain<ushort>.Create().XorShiftLeft(shift));
+    [Fact] public void PermuteBytes16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().PermuteBytes([1, 0]));
+    [Fact] public void SubstituteNibbles16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().SubstituteNibbles(SBoxPresets.Default));
+    [Fact] public void ReverseBits16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().ReverseBits());
+    [Fact] public void GrayCode16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().GrayCode());
+    [Fact] public void Affine16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().Affine(0x9E37, 0x1234));
+    [Fact] public void XorHighLow16_RoundTrip() => AssertRoundTrip16(BijectionChain<ushort>.Create().XorHighLow());
+
+    [Fact]
+    public void Presets_LightScramble16_RoundTrip() => AssertRoundTrip16(Presets.LightScramble16);
+
     [Fact]
     public void Presets_StrongMix32_RoundTrip() => AssertRoundTrip32(Presets.StrongMix32);
 
@@ -177,6 +213,18 @@ public class RoundTripTests
 
     [Fact]
     public void Presets_LightScramble64_RoundTrip() => AssertRoundTrip64(Presets.LightScramble64);
+
+    [Fact]
+    public void SignedExtensions_Int16_RoundTrip()
+    {
+        var b = Presets.LightScramble16;
+        short[] values = [0, 1, -1, short.MinValue, short.MaxValue, 42, -42];
+        foreach (var x in values)
+        {
+            Assert.Equal(x, b.Inverse(b.Forward(x)));
+            Assert.Equal(x, b.Forward(b.Inverse(x)));
+        }
+    }
 
     // Signed extension methods round-trip
     [Fact]
@@ -203,7 +251,33 @@ public class RoundTripTests
         }
     }
 
-    // Random samples
+    // Random samples — 16-bit
+    [Fact]
+    public void RandomSamples16_AllTransforms_RoundTrip()
+    {
+        var chain = BijectionChain<ushort>.Create()
+            .Xor(0xBEEF)
+            .Add(0x1234)
+            .Multiply(0x9E37)
+            .RotateBits(5)
+            .XorShiftRight(7)
+            .XorShiftLeft(3)
+            .PermuteBytes([1, 0])
+            .SubstituteNibbles(SBoxPresets.Default)
+            .ReverseBits()
+            .GrayCode()
+            .Affine(0x45D9, 0xBEEF)
+            .XorHighLow();
+
+        var rng = new Random(42);
+        for (int i = 0; i < 10000; i++)
+        {
+            ushort x = (ushort)rng.Next(0, 65536);
+            Assert.Equal(x, chain.Inverse(chain.Forward(x)));
+        }
+    }
+
+    // Random samples — 32-bit
     [Fact]
     public void RandomSamples32_AllTransforms_RoundTrip()
     {

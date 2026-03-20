@@ -14,7 +14,7 @@ internal sealed class BytePermutationBijection<T> : IBijectionStep<T>
 
     public BytePermutationBijection(byte[] permutation)
     {
-        _byteCount = typeof(T) == typeof(uint) ? 4 : 8;
+        _byteCount = BitWidth.Of<T>() / 8;
 
         ArgumentNullException.ThrowIfNull(permutation);
         if (permutation.Length != _byteCount)
@@ -56,7 +56,17 @@ internal sealed class BytePermutationBijection<T> : IBijectionStep<T>
 
     private T ApplyPermutation(T value, byte[] perm)
     {
-        if (typeof(T) == typeof(uint))
+        if (typeof(T) == typeof(ushort))
+        {
+            ushort v = ushort.CreateTruncating(value);
+            Span<byte> src = stackalloc byte[2];
+            Span<byte> dst = stackalloc byte[2];
+            System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(src, v);
+            for (int i = 0; i < 2; i++)
+                dst[i] = src[perm[i]];
+            return T.CreateTruncating(System.Buffers.Binary.BinaryPrimitives.ReadUInt16LittleEndian(dst));
+        }
+        else if (typeof(T) == typeof(uint))
         {
             uint v = uint.CreateTruncating(value);
             Span<byte> src = stackalloc byte[4];
