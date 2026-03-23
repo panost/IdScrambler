@@ -16,7 +16,7 @@ public static class BijectionRegistryExtensions
         ushort obfuscated = chain.Forward(unchecked((ushort)id));
         return format switch
         {
-            ObfuscatedIdFormat.Numeric => obfuscated.ToString(),
+            ObfuscatedIdFormat.Numeric => obfuscated.ToString(CultureInfo.InvariantCulture),
             ObfuscatedIdFormat.Base64Url => Base64Url.Encode(obfuscated),
             ObfuscatedIdFormat.Base62 => Base62.Encode(obfuscated),
             _ => throw new ArgumentOutOfRangeException(nameof(format))
@@ -31,7 +31,7 @@ public static class BijectionRegistryExtensions
         uint obfuscated = chain.Forward(unchecked((uint)id));
         return format switch
         {
-            ObfuscatedIdFormat.Numeric => obfuscated.ToString(),
+            ObfuscatedIdFormat.Numeric => obfuscated.ToString(CultureInfo.InvariantCulture),
             ObfuscatedIdFormat.Base64Url => Base64Url.Encode(obfuscated),
             ObfuscatedIdFormat.Base62 => Base62.Encode(obfuscated),
             _ => throw new ArgumentOutOfRangeException(nameof(format))
@@ -46,7 +46,7 @@ public static class BijectionRegistryExtensions
         ulong obfuscated = chain.Forward(unchecked((ulong)id));
         return format switch
         {
-            ObfuscatedIdFormat.Numeric => obfuscated.ToString(),
+            ObfuscatedIdFormat.Numeric => obfuscated.ToString(CultureInfo.InvariantCulture),
             ObfuscatedIdFormat.Base64Url => Base64Url.Encode(obfuscated),
             ObfuscatedIdFormat.Base62 => Base62.Encode(obfuscated),
             _ => throw new ArgumentOutOfRangeException(nameof(format))

@@ -5,6 +5,7 @@ using IdScrambler.Transforms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 
@@ -99,6 +100,36 @@ public class ChainTests
         }
     }
 
+    [Fact]
+    public void CompileForward_CachesDelegate()
+    {
+        var chain = BijectionChain<uint>.Create()
+            .Multiply(0x9E3779B9)
+            .XorShiftRight(16)
+            .Xor(0xDEADBEEF);
+
+        var first = chain.CompileForward();
+        var second = chain.CompileForward();
+
+        Assert.Same(first, second);
+        Assert.Equal(chain.Forward(42), first(42));
+    }
+
+    [Fact]
+    public void CompileInverse_CachesDelegate()
+    {
+        var chain = BijectionChain<uint>.Create()
+            .Multiply(0x9E3779B9)
+            .XorShiftRight(16)
+            .Xor(0xDEADBEEF);
+
+        var first = chain.CompileInverse();
+        var second = chain.CompileInverse();
+
+        Assert.Same(first, second);
+        Assert.Equal(chain.Inverse(chain.Forward(42)), first(chain.Forward(42)));
+    }
+
     // Randomized chain round-trip
     [Fact]
     public void RandomizedChain32_RoundTrip()
@@ -110,16 +141,16 @@ public class ChainTests
             int steps = rng.Next(5, 11);
             for (int s = 0; s < steps; s++)
             {
-                switch (rng.Next(7))
+                chain = rng.Next(7) switch
                 {
-                    case 0: chain.Xor((uint)rng.Next()); break;
-                    case 1: chain.Add((uint)rng.Next()); break;
-                    case 2: chain.Multiply((uint)rng.Next() | 1); break; // ensure odd
-                    case 3: chain.RotateBits(rng.Next(1, 32)); break;
-                    case 4: chain.XorShiftRight(rng.Next(1, 32)); break;
-                    case 5: chain.XorShiftLeft(rng.Next(1, 32)); break;
-                    case 6: chain.GrayCode(); break;
-                }
+                    0 => chain.Xor((uint)rng.Next()),
+                    1 => chain.Add((uint)rng.Next()),
+                    2 => chain.Multiply((uint)rng.Next() | 1), // ensure odd
+                    3 => chain.RotateBits(rng.Next(1, 32)),
+                    4 => chain.XorShiftRight(rng.Next(1, 32)),
+                    5 => chain.XorShiftLeft(rng.Next(1, 32)),
+                    _ => chain.GrayCode()
+                };
             }
 
             for (int i = 0; i < 1000; i++)
@@ -485,6 +516,37 @@ public class ChainTests
         // Base64Url
         var base64Token = registry.Encode("Test", 42, ObfuscatedIdFormat.Base64Url);
         Assert.Equal(42, registry.DecodeInt32("Test", base64Token, ObfuscatedIdFormat.Base64Url));
+    }
+
+    [Fact]
+    public void Registry_NumericEncoding_UsesInvariantCulture()
+    {
+        var registry = new BijectionRegistry();
+        registry.Register("Test", BijectionChain<uint>.Create()
+            .Multiply(0x9E3779B9)
+            .XorShiftRight(16)
+            .Xor(0xDEADBEEF));
+
+        var previousCulture = CultureInfo.CurrentCulture;
+        var previousUiCulture = CultureInfo.CurrentUICulture;
+
+        try
+        {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("ar-EG");
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("ar-EG");
+
+            var token = registry.Encode("Test", 42, ObfuscatedIdFormat.Numeric);
+
+            Assert.Equal(
+                registry.Resolve<uint>("Test").Forward(42u).ToString(CultureInfo.InvariantCulture),
+                token);
+            Assert.Equal(42, registry.DecodeInt32("Test", token, ObfuscatedIdFormat.Numeric));
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = previousCulture;
+            CultureInfo.CurrentUICulture = previousUiCulture;
+        }
     }
 
     // Registry case-insensitive

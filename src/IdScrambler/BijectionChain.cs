@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using System.Numerics;
+using System.Threading;
 using IdScrambler.Transforms;
 
 namespace IdScrambler;
@@ -11,25 +12,30 @@ namespace IdScrambler;
 public sealed class BijectionChain<T> : IBijection<T>
     where T : unmanaged, IBinaryInteger<T>, IUnsignedNumber<T>
 {
-    private readonly IBijectionStep<T>[] _steps;
+    private readonly ChainNode? _tail;
+    private readonly int _count;
+    private IBijectionStep<T>[]? _steps;
+    private Func<T, T>? _compiledForward;
+    private Func<T, T>? _compiledInverse;
 
     private BijectionChain()
     {
         _steps = [];
     }
 
-    private BijectionChain(IBijectionStep<T>[] steps)
+    private BijectionChain(ChainNode tail, int count)
     {
-        _steps = steps;
+        _tail = tail;
+        _count = count;
     }
 
     /// <summary>Create a new empty chain.</summary>
     public static BijectionChain<T> Create() => new();
 
     /// <summary>The number of steps in the chain.</summary>
-    public int Count => _steps.Length;
+    public int Count => _count;
 
-    internal IReadOnlyList<IBijectionStep<T>> Steps => _steps;
+    internal IReadOnlyList<IBijectionStep<T>> Steps => GetSteps();
 
     /// <summary>XOR with a constant key.</summary>
     public BijectionChain<T> Xor(T key)
@@ -105,48 +111,94 @@ public sealed class BijectionChain<T> : IBijection<T>
 
     private BijectionChain<T> Append(IBijectionStep<T> step)
     {
-        var steps = new IBijectionStep<T>[_steps.Length + 1];
-        _steps.CopyTo(steps, 0);
-        steps[^1] = step;
-        return new BijectionChain<T>(steps);
+        return new BijectionChain<T>(new ChainNode(step, _tail), _count + 1);
     }
 
     /// <summary>Apply all forward steps 0 → N.</summary>
     public T Forward(T value)
     {
+        var steps = GetSteps();
         T result = value;
-        for (int i = 0; i < _steps.Length; i++)
-            result = _steps[i].Forward(result);
+        for (int i = 0; i < steps.Length; i++)
+            result = steps[i].Forward(result);
         return result;
     }
 
     /// <summary>Apply all inverse steps N → 0.</summary>
     public T Inverse(T value)
     {
+        var steps = GetSteps();
         T result = value;
-        for (int i = _steps.Length - 1; i >= 0; i--)
-            result = _steps[i].Inverse(result);
+        for (int i = steps.Length - 1; i >= 0; i--)
+            result = steps[i].Inverse(result);
         return result;
     }
 
     /// <summary>Compile the forward chain into a single delegate with all steps inlined.</summary>
     public Func<T, T> CompileForward()
     {
+        var compiled = _compiledForward;
+        if (compiled != null)
+            return compiled;
+
+        var steps = GetSteps();
         var param = Expression.Parameter(typeof(T), "value");
         Expression body = param;
-        for (int i = 0; i < _steps.Length; i++)
-            body = _steps[i].BuildForwardExpression(body);
-        return Expression.Lambda<Func<T, T>>(body, param).Compile();
+        for (int i = 0; i < steps.Length; i++)
+            body = steps[i].BuildForwardExpression(body);
+
+        compiled = Expression.Lambda<Func<T, T>>(body, param).Compile();
+        Interlocked.CompareExchange(ref _compiledForward, compiled, null);
+        return _compiledForward!;
     }
 
     /// <summary>Compile the inverse chain into a single delegate with all steps inlined.</summary>
     public Func<T, T> CompileInverse()
     {
+        var compiled = _compiledInverse;
+        if (compiled != null)
+            return compiled;
+
+        var steps = GetSteps();
         var param = Expression.Parameter(typeof(T), "value");
         Expression body = param;
-        for (int i = _steps.Length - 1; i >= 0; i--)
-            body = _steps[i].BuildInverseExpression(body);
-        return Expression.Lambda<Func<T, T>>(body, param).Compile();
+        for (int i = steps.Length - 1; i >= 0; i--)
+            body = steps[i].BuildInverseExpression(body);
+
+        compiled = Expression.Lambda<Func<T, T>>(body, param).Compile();
+        Interlocked.CompareExchange(ref _compiledInverse, compiled, null);
+        return _compiledInverse!;
+    }
+
+    private IBijectionStep<T>[] GetSteps()
+    {
+        var steps = _steps;
+        if (steps != null)
+            return steps;
+
+        steps = new IBijectionStep<T>[_count];
+        var node = _tail;
+        for (int i = _count - 1; i >= 0; i--)
+        {
+            steps[i] = node!.Step;
+            node = node.Previous;
+        }
+
+        Interlocked.CompareExchange(ref _steps, steps, null);
+        return _steps!;
+    }
+
+    private sealed class ChainNode
+    {
+        public ChainNode(IBijectionStep<T> step, ChainNode? previous)
+        {
+            Step = step;
+            Previous = previous;
+        }
+
+        public IBijectionStep<T> Step { get; }
+
+        public ChainNode? Previous { get; }
     }
 }
 
