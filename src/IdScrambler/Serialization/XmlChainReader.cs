@@ -75,6 +75,21 @@ internal static class XmlChainReader
                     case "XorHighLow":
                         chain = chain.XorHighLow();
                         break;
+                    case "XorRotate":
+                        chain = chain.XorRotate(ParseInt(element, "a"), ParseInt(element, "b"));
+                        break;
+                    case "Quadratic":
+                        chain = chain.Quadratic();
+                        break;
+                    case "Clmul":
+                        chain = chain.Clmul(ParseValue<T>(element, "factor"));
+                        break;
+                    case "Crc32":
+                        chain = chain.Crc32();
+                        break;
+                    case "Rxs":
+                        chain = chain.Rxs(ParseInt(element, "selectorBits"), ParseInt(element, "baseShift"));
+                        break;
                     default:
                         throw new BijectionConfigException(
                             $"Unknown step element: '{element.Name.LocalName}'.", stepIndex);

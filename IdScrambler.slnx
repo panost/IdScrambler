@@ -6,4 +6,7 @@
   <Folder Name="/tests/">
     <Project Path="tests/IdScrambler.Tests/IdScrambler.Tests.csproj" />
   </Folder>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/IdScrambler.Benchmarks/IdScrambler.Benchmarks.csproj" />
+  </Folder>
 </Solution>

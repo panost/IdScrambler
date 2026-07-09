@@ -109,6 +109,41 @@ public sealed class BijectionChain<T> : IBijection<T>
         return Append(new XorHighLowBijection<T>());
     }
 
+    /// <summary>XOR of two rotations: x ^ RotL(x, a) ^ RotL(x, b). Amounts must be distinct.</summary>
+    public BijectionChain<T> XorRotate(int rotateA, int rotateB)
+    {
+        return Append(new XorRotateBijection<T>(rotateA, rotateB));
+    }
+
+    /// <summary>
+    /// Quadratic permutation: x * (2x + 1) mod 2^N.
+    /// Note: <see cref="Forward"/> is a single multiply, but the inverse has no closed form and is
+    /// solved by Newton–Hensel lifting (~40–55 ns, roughly 30× the other transforms). Fine when
+    /// decoding happens per request (e.g. ASP.NET model binding); avoid in bulk-decode hot loops.
+    /// </summary>
+    public BijectionChain<T> Quadratic()
+    {
+        return Append(new QuadraticBijection<T>());
+    }
+
+    /// <summary>Carry-less (GF(2)) multiplication by an odd constant, mod X^N.</summary>
+    public BijectionChain<T> Clmul(T oddFactor)
+    {
+        return Append(new ClmulBijection<T>(oddFactor));
+    }
+
+    /// <summary>One CRC-32C step over the value (32-bit chains only).</summary>
+    public BijectionChain<T> Crc32()
+    {
+        return Append(new Crc32Bijection<T>());
+    }
+
+    /// <summary>Data-dependent xorshift-right (PCG "RXS"): the top selector bits choose the shift.</summary>
+    public BijectionChain<T> Rxs(int selectorBits, int baseShift)
+    {
+        return Append(new RxsBijection<T>(selectorBits, baseShift));
+    }
+
     private BijectionChain<T> Append(IBijectionStep<T> step)
     {
         return new BijectionChain<T>(new ChainNode(step, _tail), _count + 1);

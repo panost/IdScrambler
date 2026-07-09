@@ -135,3 +135,6 @@ _[Kk]ey[Ss]tore/
 /Keys/*.pfx
 .claude/
 
+
+# BenchmarkDotNet results
+BenchmarkDotNet.Artifacts/

@@ -82,6 +82,21 @@ internal static class JsonChainReader
                     case "XorHighLow":
                         chain = chain.XorHighLow();
                         break;
+                    case "XorRotate":
+                        chain = chain.XorRotate(ParseInt(step, "a"), ParseInt(step, "b"));
+                        break;
+                    case "Quadratic":
+                        chain = chain.Quadratic();
+                        break;
+                    case "Clmul":
+                        chain = chain.Clmul(ParseValue<T>(step, "factor"));
+                        break;
+                    case "Crc32":
+                        chain = chain.Crc32();
+                        break;
+                    case "Rxs":
+                        chain = chain.Rxs(ParseInt(step, "selectorBits"), ParseInt(step, "baseShift"));
+                        break;
                     default:
                         throw new BijectionConfigException($"Unknown step type: '{type}'.", stepIndex);
                 }

@@ -130,6 +130,26 @@ public static class BijectionSerializer
             case XorHighLowBijection<T>:
                 writer.WriteString("type", "XorHighLow");
                 break;
+            case XorRotateBijection<T> xr:
+                writer.WriteString("type", "XorRotate");
+                writer.WriteNumber("a", xr.RotateA);
+                writer.WriteNumber("b", xr.RotateB);
+                break;
+            case QuadraticBijection<T>:
+                writer.WriteString("type", "Quadratic");
+                break;
+            case ClmulBijection<T> cl:
+                writer.WriteString("type", "Clmul");
+                writer.WriteString("factor", FormatHex(cl.Factor));
+                break;
+            case Crc32Bijection<T>:
+                writer.WriteString("type", "Crc32");
+                break;
+            case RxsBijection<T> rxs:
+                writer.WriteString("type", "Rxs");
+                writer.WriteNumber("selectorBits", rxs.SelectorBits);
+                writer.WriteNumber("baseShift", rxs.BaseShift);
+                break;
             default:
                 throw new InvalidOperationException($"Unknown step type: {step.GetType().Name}");
         }
@@ -157,6 +177,15 @@ public static class BijectionSerializer
                 new XAttribute("factor", FormatHex(aff.Factor)),
                 new XAttribute("offset", FormatValue(aff.Offset))),
             XorHighLowBijection<T> => new XElement("XorHighLow"),
+            XorRotateBijection<T> xr => new XElement("XorRotate",
+                new XAttribute("a", xr.RotateA),
+                new XAttribute("b", xr.RotateB)),
+            QuadraticBijection<T> => new XElement("Quadratic"),
+            ClmulBijection<T> cl => new XElement("Clmul", new XAttribute("factor", FormatHex(cl.Factor))),
+            Crc32Bijection<T> => new XElement("Crc32"),
+            RxsBijection<T> rxs => new XElement("Rxs",
+                new XAttribute("selectorBits", rxs.SelectorBits),
+                new XAttribute("baseShift", rxs.BaseShift)),
             _ => throw new InvalidOperationException($"Unknown step type: {step.GetType().Name}")
         };
     }
